@@ -1,0 +1,33 @@
+version: @version@
+
+# @an makes the pattern allow for `an`.
+
+types:
+	villagerprofession: profession, villager profession
+	villagertype: villager type
+
+villagerprofession:
+	armorer: armorer
+	butcher: butcher
+	cartographer: cartographer
+	cleric: cleric
+	farmer: farmer
+	fisherman: fisherman, fisher
+	fletcher: fletcher
+	leatherworker: leatherworker, leather worker
+	librarian: librarian, nerd
+	mason: mason
+	nitwit: nitwit
+	none: none, nothing
+	shepherd: shepherd
+	toolsmith: toolsmith
+	weaponsmith: weaponsmith
+
+villagertype:
+	desert: desert
+	jungle: jungle
+	plains: plains
+	savanna: savanna
+	snow: snow
+	swamp: swamp
+	taiga: taiga

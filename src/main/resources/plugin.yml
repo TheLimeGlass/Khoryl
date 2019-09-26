@@ -1,0 +1,7 @@
+name: Khoryl
+authors: [LimeGlass]
+version: @version@
+api-version: 1.13
+softdepend: [Skellett]
+depend: [Skript]
+main: me.limeglass.khoryl.Khoryl
