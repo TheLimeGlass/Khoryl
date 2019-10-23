@@ -16,7 +16,7 @@ public class ExprRecipeResult extends SimplePropertyExpression<MerchantRecipe, I
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			register(ExprRecipeResult.class, ItemType.class, "result", "merchantrecipies");
+			register(ExprRecipeResult.class, ItemType.class, "result", "merchantrecipes");
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import me.limeglass.khoryl.lang.EntityPropertyExpression;
 public class ExprAngry extends EntityPropertyExpression<LivingEntity, Wolf, Boolean> {
 
 	static {
-		register(ExprAngry.class, Boolean.class, "angry", "livingentities");
+		register(ExprAngry.class, Boolean.class, "angry [state]", "livingentities");
 	}
 
 	@Override

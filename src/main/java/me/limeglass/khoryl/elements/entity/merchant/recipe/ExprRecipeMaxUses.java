@@ -20,7 +20,7 @@ public class ExprRecipeMaxUses extends SimplePropertyExpression<MerchantRecipe, 
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			register(ExprRecipeMaxUses.class, Number.class, "max uses", "merchantrecipies");
+			register(ExprRecipeMaxUses.class, Number.class, "max uses", "merchantrecipes");
 	}
 
 	@Override

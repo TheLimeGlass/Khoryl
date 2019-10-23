@@ -20,7 +20,7 @@ public class ExprRecipeReward extends SimplePropertyExpression<MerchantRecipe, B
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			register(ExprRecipeReward.class, Boolean.class, "[player] experience reward", "merchantrecipies");
+			register(ExprRecipeReward.class, Boolean.class, "[player] experience reward", "merchantrecipes");
 	}
 
 	@Override

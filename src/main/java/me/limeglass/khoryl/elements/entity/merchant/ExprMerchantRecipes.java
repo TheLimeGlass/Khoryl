@@ -1,5 +1,7 @@
 package me.limeglass.khoryl.elements.entity.merchant;
 
+import java.util.Arrays;
+
 import org.bukkit.entity.AbstractVillager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
@@ -12,29 +14,56 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
-import ch.njol.skript.util.Version;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.EntityPropertyExpression;
+import me.limeglass.khoryl.lang.EntitySyntax;
 
 @Name("Merchant Recipes")
-@Description("Gets the villagers recipies.")
+@Description("Gets the villagers recipes.")
 @Since("1.0.0")
-public class ExprMerchantRecipes extends EntityPropertyExpression<LivingEntity, AbstractVillager, MerchantRecipe[]> {
+public class ExprMerchantRecipes extends SimpleExpression<MerchantRecipe> implements EntitySyntax<AbstractVillager> {
 
 	static {
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			register(ExprMerchantRecipes.class, MerchantRecipe[].class, "[merchant] recipes", "livingentities");
+		Skript.registerExpression(ExprMerchantRecipes.class, MerchantRecipe.class, ExpressionType.PROPERTY, "[(all [[of] the]|the)] [merchant] recipes (from|of) %livingentities%", "[(all [[of] the]|the)] %livingentities%'[s] [merchant] recipes");
+	}
+
+	private Expression<LivingEntity> villagers;
+
+	@Override
+	public boolean isSingle() {
+		return false;
+	}
+
+	@Override
+	public Class<? extends MerchantRecipe> getReturnType() {
+		return MerchantRecipe.class;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+		villagers = (Expression<LivingEntity>) exprs[0];
+		return true;
 	}
 
 	@Override
 	@Nullable
-	protected MerchantRecipe[] grab(AbstractVillager villager) {
-		return ((Merchant)villager).getRecipes().stream().toArray(size -> new MerchantRecipe[size]);
+	protected MerchantRecipe[] get(Event event) {
+		return Arrays.stream(villagers.getArray(event))
+				.filter(entity -> entity != null)
+				.filter(entity -> accepts(entity))
+				.map(villager -> ((Merchant)villager).getRecipes())
+				.flatMap(recipies -> recipies.stream())
+				.toArray(size -> new MerchantRecipe[size]);
 	}
 
 	@Override
-	protected String getPropertyName() {
-		return "merchant recipes";
+	public String toString(@Nullable Event event, boolean debug) {
+		return "recipes of " + villagers.toString(event, debug);
 	}
 
 	@Nullable
@@ -49,24 +78,24 @@ public class ExprMerchantRecipes extends EntityPropertyExpression<LivingEntity, 
 			return;
 		switch (mode) {
 			case SET:
-				for (AbstractVillager villager : getEntities(event))
+				for (AbstractVillager villager : getEntities(villagers, event))
 					((Merchant)villager).getRecipes().clear();
 			case ADD:
 				for (MerchantRecipe recipe : (MerchantRecipe[]) delta) {
-					for (AbstractVillager villager : getEntities(event)) {
+					for (AbstractVillager villager : getEntities(villagers, event)) {
 						((Merchant)villager).getRecipes().add(recipe);
 					}
 				}
 				break;
 			case RESET:
 			case DELETE:
-				for (AbstractVillager villager : getEntities(event))
+				for (AbstractVillager villager : getEntities(villagers, event))
 					((Merchant)villager).getRecipes().clear();
 				break;
 			case REMOVE_ALL:
 			case REMOVE:
 				for (MerchantRecipe recipe : (MerchantRecipe[]) delta) {
-					for (AbstractVillager villager : getEntities(event)) {
+					for (AbstractVillager villager : getEntities(villagers, event)) {
 						((Merchant)villager).getRecipes().remove(recipe);
 					}
 				}

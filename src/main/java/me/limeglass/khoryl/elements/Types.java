@@ -4,6 +4,7 @@ import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
 import java.util.stream.Collectors;
 
+import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
@@ -29,6 +30,8 @@ public class Types {
 		EnumClassInfo.create(Villager.Profession.class, "villagerprofession").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
 			EnumClassInfo.create(Villager.Type.class, "villagertype").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
+			EnumClassInfo.create(TropicalFish.Pattern.class, "tropicalfishpattern").register();
 
 		Classes.registerClass(new ClassInfo<>(MerchantRecipe.class, "merchantrecipe")
 				.user("merchant ?recip(e|ies)")

@@ -10,7 +10,7 @@ import ch.njol.skript.doc.Since;
 import me.limeglass.khoryl.lang.EntityPropertyCondition;
 
 @Name("Merchant Trading")
-@Description("Check if the villager is currently trading with somone.")
+@Description("Check if the villager is currently trading with someone.")
 @Since("1.0.0")
 public class CondTrading extends EntityPropertyCondition<LivingEntity, AbstractVillager> {
 

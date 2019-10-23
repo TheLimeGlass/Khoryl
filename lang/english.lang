@@ -4,6 +4,7 @@ version: @version@
 
 types:
 	villagerprofession: profession, villager profession
+	tropicalfishpattern: tropical fish pattern
 	villagertype: villager type
 
 villagerprofession:
@@ -31,3 +32,17 @@ villagertype:
 	snow: snow
 	swamp: swamp
 	taiga: taiga
+
+tropicalfishpattern:
+	betty: betty
+	blockfish: blockfish
+	brinely: brinely
+	clayfish: clayfish
+	dasher: dasher
+	flopper: flopper
+	glitter: glitter
+	kob: kob
+	snooper: snooper
+	spotty: spotty
+	stripey: stripey
+	sunstreak: sunstreak

@@ -3,11 +3,14 @@ package me.limeglass.khoryl.elements.entity.villager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
+import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
+import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.EntityPropertyExpression;
 
 @Name("Villager Profession")
@@ -33,6 +36,23 @@ public class ExprProfession extends EntityPropertyExpression<LivingEntity, Villa
 	@Override
 	protected String getPropertyName() {
 		return "villager profession";
+	}
+
+	@Nullable
+	@Override
+	public Class<?>[] acceptChange(ChangeMode mode) {
+		if (mode == ChangeMode.SET)
+			return CollectionUtils.array(Profession.class);
+		return null;
+	}
+
+	@Override
+	public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
+		if (delta[0] == null)
+			return;
+		Profession profession = (Profession) delta[0];
+		for (Villager villager : getEntities(event))
+			villager.setProfession(profession);
 	}
 
 }

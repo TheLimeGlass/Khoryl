@@ -20,7 +20,7 @@ public class ExprRecipeMultiplier extends SimplePropertyExpression<MerchantRecip
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			register(ExprRecipeMultiplier.class, Number.class, "price multiplier", "merchantrecipies");
+			register(ExprRecipeMultiplier.class, Number.class, "price multiplier", "merchantrecipes");
 	}
 
 	@Override
