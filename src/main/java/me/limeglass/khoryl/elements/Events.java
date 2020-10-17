@@ -15,7 +15,7 @@ import ch.njol.skript.util.Getter;
 public class Events {
 
 	static {
-		Skript.registerEvent("villager aquire trade", SimpleEvent.class, VillagerAcquireTradeEvent.class, "villager aquire trade");
+		Skript.registerEvent("villager acquire trade", SimpleEvent.class, VillagerAcquireTradeEvent.class, "villager acquire [new] trade");
 		EventValues.registerEventValue(VillagerAcquireTradeEvent.class, AbstractVillager.class, new Getter<AbstractVillager, VillagerAcquireTradeEvent>() {
 
 			@Override

@@ -17,7 +17,7 @@ import me.limeglass.khoryl.lang.EntityPropertyExpression;
 
 @Name("Tropical Fish Body Colour")
 @Description("Grab the body colour of tropical fishes.")
-@Since("1.0.0")
+@Since("1.0.1")
 public class ExprBodyColour extends EntityPropertyExpression<LivingEntity, TropicalFish, SkriptColor> {
 
 	static {

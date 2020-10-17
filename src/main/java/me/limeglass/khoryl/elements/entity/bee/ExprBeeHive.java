@@ -1,8 +1,8 @@
-package me.limeglass.khoryl.elements.entity.tropicalfish;
+package me.limeglass.khoryl.elements.entity.bee;
 
+import org.bukkit.Location;
+import org.bukkit.entity.Bee;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.TropicalFish;
-import org.bukkit.entity.TropicalFish.Pattern;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -15,32 +15,32 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.EntityPropertyExpression;
 
-@Name("Tropical Fish Pattern")
-@Description("Grab the pattern of tropical fishes.")
-@Since("1.0.1")
-public class ExprPattern extends EntityPropertyExpression<LivingEntity, TropicalFish, Pattern> {
+@Name("Bee Hive")
+@Description("Gets the hive location of bee(s).")
+@Since("1.0.2")
+public class ExprBeeHive extends EntityPropertyExpression<LivingEntity, Bee, Location> {
 
 	static {
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
-			register(ExprPattern.class, Pattern.class, "[tropical] fish pattern", "livingentities");
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 15)))
+			register(ExprBeeHive.class, Location.class, "hive location", "livingentities");
 	}
 
 	@Override
 	protected String getPropertyName() {
-		return "fish pattern";
+		return "hive location";
 	}
 
 	@Override
 	@Nullable
-	protected Pattern grab(TropicalFish fish) {
-		return fish.getPattern();
+	protected Location grab(Bee bee) {
+		return bee.getHive();
 	}
 
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
 		if (mode == ChangeMode.SET)
-			return CollectionUtils.array(Pattern.class);
+			return CollectionUtils.array(Location.class);
 		return null;
 	}
 
@@ -48,9 +48,9 @@ public class ExprPattern extends EntityPropertyExpression<LivingEntity, Tropical
 	public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
 		if (delta[0] == null)
 			return;
-		Pattern pattern = (Pattern) delta[0];
-		for (TropicalFish fish : getEntities(event))
-			fish.setPattern(pattern);
+		Location location = (Location) delta[0];
+		for (Bee bee : getEntities(event))
+			bee.setHive(location);
 	}
 
 }

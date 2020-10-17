@@ -1,8 +1,7 @@
-package me.limeglass.khoryl.elements.entity.tropicalfish;
+package me.limeglass.khoryl.elements.entity.bee;
 
+import org.bukkit.entity.Bee;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.TropicalFish;
-import org.bukkit.entity.TropicalFish.Pattern;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -15,32 +14,32 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.EntityPropertyExpression;
 
-@Name("Tropical Fish Pattern")
-@Description("Grab the pattern of tropical fishes.")
-@Since("1.0.1")
-public class ExprPattern extends EntityPropertyExpression<LivingEntity, TropicalFish, Pattern> {
+@Name("Bee Nectar")
+@Description("Gets if the bee(s) have nectar. Can be set.")
+@Since("1.0.2")
+public class ExprBeeNectar extends EntityPropertyExpression<LivingEntity, Bee, Boolean> {
 
 	static {
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
-			register(ExprPattern.class, Pattern.class, "[tropical] fish pattern", "livingentities");
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 15)))
+			register(ExprBeeNectar.class, Boolean.class, "[(has|have)] nectar", "livingentities");
 	}
 
 	@Override
 	protected String getPropertyName() {
-		return "fish pattern";
+		return "has nectar";
 	}
 
 	@Override
 	@Nullable
-	protected Pattern grab(TropicalFish fish) {
-		return fish.getPattern();
+	protected Boolean grab(Bee bee) {
+		return bee.hasNectar();
 	}
 
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
 		if (mode == ChangeMode.SET)
-			return CollectionUtils.array(Pattern.class);
+			return CollectionUtils.array(Boolean.class);
 		return null;
 	}
 
@@ -48,9 +47,9 @@ public class ExprPattern extends EntityPropertyExpression<LivingEntity, Tropical
 	public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
 		if (delta[0] == null)
 			return;
-		Pattern pattern = (Pattern) delta[0];
-		for (TropicalFish fish : getEntities(event))
-			fish.setPattern(pattern);
+		Boolean nectar = (Boolean) delta[0];
+		for (Bee bee : getEntities(event))
+			bee.setHasNectar(nectar);
 	}
 
 }
