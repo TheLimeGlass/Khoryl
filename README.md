@@ -1,2 +1,2 @@
-# Khoryl v1.0.2
+# Khoryl
 A Skript addon dedicated to doing things Skript can't.

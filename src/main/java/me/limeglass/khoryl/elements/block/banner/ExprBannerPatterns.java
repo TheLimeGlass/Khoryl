@@ -11,10 +11,16 @@ import com.google.common.collect.Lists;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.BlockPropertyExpression;
 
+@Name("Banner Patterns")
+@Description("Get banner patterns on a banner.")
+@Since("1.0.3")
 public class ExprBannerPatterns extends BlockPropertyExpression<Banner, Pattern[]> {
 
 	static {

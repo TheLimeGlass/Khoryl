@@ -8,11 +8,17 @@ import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
+@Name("Modify Banner Pattern")
+@Description("set/remove the position of a banner pattern.")
+@Since("1.0.3")
 public class EffModifyBannerPattern extends Effect {
 
 	static {

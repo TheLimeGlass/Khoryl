@@ -6,12 +6,18 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.util.Color;
 import ch.njol.skript.util.SkriptColor;
 import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.BlockPropertyExpression;
 
+@Name("Banner base Color")
+@Description("Get the base color of a banner.")
+@Since("1.0.3")
 public class ExprBannerBaseColour extends BlockPropertyExpression<Banner, Color> {
 
 	static {
