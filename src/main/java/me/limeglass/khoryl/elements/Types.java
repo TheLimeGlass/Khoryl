@@ -2,8 +2,12 @@ package me.limeglass.khoryl.elements;
 
 import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
+import org.bukkit.DyeColor;
+import org.bukkit.block.banner.Pattern;
+import org.bukkit.block.banner.PatternType;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
@@ -27,6 +31,8 @@ import me.limeglass.khoryl.lang.EnumClassInfo;
 public class Types {
 
 	static {
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 8)))
+			EnumClassInfo.create(PatternType.class, "bannerpatterntype").register();
 		EnumClassInfo.create(Villager.Profession.class, "villagerprofession").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
 			EnumClassInfo.create(Villager.Type.class, "villagertype").register();
@@ -114,6 +120,72 @@ public class Types {
 								.filter(value -> value != null)
 								.collect(Collectors.toList()));
 						return recipe;
+					}
+
+					@Override
+					public boolean mustSyncDeserialization() {
+						return false;
+					}
+
+					@Override
+					protected boolean canBeInstantiated() {
+						return false;
+					}
+
+				}));
+
+		Classes.registerClass(new ClassInfo<>(Pattern.class, "bannerpattern")
+				.user("banner patterns?")
+				.name("Banner Pattern")
+				.defaultExpression(new EventValueExpression<>(Pattern.class))
+				.parser(new Parser<Pattern>() {
+
+					@Override
+					@Nullable
+					public Pattern parse(String input, ParseContext context) {
+						return null;
+					}
+
+					@Override
+					public boolean canParse(ParseContext context) {
+						return false;
+					}
+
+					@Override
+					public String toString(Pattern pattern, int flags) {
+						return "Banner pattern " + pattern.toString();
+					}
+
+					@Override
+					public String toVariableNameString(Pattern pattern) {
+						return "Pattern pattern " + pattern.getPattern().name().toLowerCase(Locale.US) + " colored " + pattern.getColor().name().toLowerCase(Locale.US);
+					}
+
+					@Override
+					public String getVariableNamePattern() {
+						return "\\S+";
+					}
+
+				}).serializer(new Serializer<Pattern>() {
+
+					@Override
+					public Fields serialize(Pattern pattern) throws NotSerializableException {
+						Fields fields = new Fields();
+						fields.putPrimitive("type", pattern.getPattern().name());
+						fields.putPrimitive("color", pattern.getColor().name());
+						return fields;
+					}
+
+					@Override
+					public void deserialize(Pattern pattern, Fields fields) {
+						assert false;
+					}
+
+					@Override
+					public Pattern deserialize(Fields fields) throws StreamCorruptedException {
+						DyeColor color = DyeColor.valueOf(fields.getAndRemovePrimitive("color", String.class));
+						PatternType type = PatternType.valueOf(fields.getAndRemovePrimitive("type", String.class));
+						return new Pattern(color, type);
 					}
 
 					@Override

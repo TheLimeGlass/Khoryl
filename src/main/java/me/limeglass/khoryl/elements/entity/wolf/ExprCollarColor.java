@@ -32,7 +32,7 @@ public class ExprCollarColor extends EntityPropertyExpression<LivingEntity, Wolf
 	@Override
 	@Nullable
 	protected Color grab(Wolf wolf) {
-		return SkriptColor.fromDyeColor(wolf.getCollarColor()).orElse(SkriptColor.DARK_RED);
+		return SkriptColor.fromDyeColor(wolf.getCollarColor());
 	}
 
 	@Nullable

@@ -33,7 +33,7 @@ public class ExprBodyColour extends EntityPropertyExpression<LivingEntity, Tropi
 	@Override
 	@Nullable
 	protected SkriptColor grab(TropicalFish fish) {
-		return SkriptColor.fromDyeColor(fish.getBodyColor()).orElse(SkriptColor.BLACK);
+		return SkriptColor.fromDyeColor(fish.getBodyColor());
 	}
 
 	@Nullable

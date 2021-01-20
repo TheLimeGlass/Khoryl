@@ -46,3 +46,46 @@ tropicalfishpattern:
 	spotty: spotty
 	stripey: stripey
 	sunstreak: sunstreak
+
+bannerpatterntype:
+	base: base, default, blank
+	border: border, outline
+	bricks: bricks
+	circle_middle: circle middle, circle in middle
+	creeper: creeper, creeper head
+	cross: cross
+	curly_border: curly border, curly outline, squiggly outline
+	diagonal_left: diagonal left
+	diagonal_left_mirror: diagonal left mirror
+	diagonal_right: diagonal right
+	diagonal_right_mirror: diagonal right mirror
+	flower: flower
+	globe: globe
+	gradient: gradient, fade
+	gradient_up: gradient up, fade up
+	half_horizontal: half horizontal
+	half_horizontal_mirror: half horizontal mirror
+	half_vertical: half vertical
+	half_vertical_mirror: half vertical mirror
+	mojang: mojang
+	piglin: piglin
+	rhombus_middle: rhombus middle, rhombus
+	skull: skull
+	square_bottom_left: square bottom left
+	square_bottom_right: square bottom right
+	square_top_left: square top left
+	square_top_right: square top right
+	straight_cross: straight cross
+	stripe_bottom: stripe bottom
+	stripe_center: stripe center
+	stripe_downleft: stripe down left
+	stripe_downright: stripe down right
+	stripe_left: stripe left
+	stripe_middle: stripe middle
+	stripe_right: stripe right
+	stripe_small: stripe small
+	stripe_top: stripe top
+	triangle_bottom: triangle bottom
+	triangle_top: triangle top
+	triangles_bottom: triangles bottom
+	triangles_top: triangles top
