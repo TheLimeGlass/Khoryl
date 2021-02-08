@@ -13,12 +13,12 @@ import ch.njol.skript.util.Color;
 import ch.njol.skript.util.SkriptColor;
 import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.BlockPropertyExpression;
+import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 
 @Name("Banner base Color")
 @Description("Get the base color of a banner.")
 @Since("1.0.3")
-public class ExprBannerBaseColour extends BlockPropertyExpression<Banner, Color> {
+public class ExprBannerBaseColour extends BlockStatePropertyExpression<Banner, Color> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 8)))
@@ -49,8 +49,10 @@ public class ExprBannerBaseColour extends BlockPropertyExpression<Banner, Color>
 		if (delta[0] == null)
 			return;
 		SkriptColor colour = (SkriptColor) delta[0];
-		for (Banner banner : getBlockStates(event))
+		for (Banner banner : getBlockStates(event)) {
 			banner.setBaseColor(colour.asDyeColor());
+			banner.update();
+		}
 	}
 
 }

@@ -64,6 +64,7 @@ public class EffModifyBannerPattern extends Effect {
 				banner.setPattern(index.intValue(), pattern);
 			else
 				banner.removePattern(index.intValue());
+			banner.update();
 		}
 	}
 

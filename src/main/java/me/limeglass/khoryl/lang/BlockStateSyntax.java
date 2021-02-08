@@ -12,7 +12,7 @@ import com.google.common.reflect.TypeToken;
 
 import ch.njol.skript.lang.Expression;
 
-public interface BlockSyntax<S extends BlockState> {
+public interface BlockStateSyntax<S extends BlockState> {
 
 	@SuppressWarnings({"serial", "unchecked"})
 	default Class<S> getCastingBlockStateClass() {

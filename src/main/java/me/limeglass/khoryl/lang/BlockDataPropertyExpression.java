@@ -1,11 +1,13 @@
 package me.limeglass.khoryl.lang;
 
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -16,11 +18,11 @@ import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.log.ErrorQuality;
 import me.limeglass.khoryl.Khoryl;
 
-public abstract class BlockPropertyExpression<S extends BlockState, V> extends SimplePropertyExpression<Block, V> implements BlockSyntax<S> {
+public abstract class BlockDataPropertyExpression<S extends BlockData, V> extends SimplePropertyExpression<Block, V> implements BlockDataSyntax<S> {
 
 	private final boolean printErrors;
 
-	public BlockPropertyExpression() {
+	public BlockDataPropertyExpression() {
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
@@ -39,23 +41,31 @@ public abstract class BlockPropertyExpression<S extends BlockState, V> extends S
 	public final V convert(Block block) {
 		if (block == null)
 			return null;
-		BlockState state = block.getState();
-		if (!accepts(state)) {
+		BlockData data = block.getBlockData();
+		if (!accepts(data)) {
 			if (printErrors)
-				Skript.error("A block state was not of type " + getCastingBlockStateClass().getName()
+				Skript.error("A block data was not of type " + getCastingBlockDataClass().getName()
 						+ " in property expression '" + getPropertyName() + "'", ErrorQuality.SEMANTIC_ERROR);
 			return null;
 		}
-		return grab((S) state);
+		return grab((S) data);
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Set<S> getBlockStates(Event event) {
+	protected Set<S> getBlockDatas(Event event) {
 		return Arrays.stream(getExpr().getArray(event))
-				.map(block -> block.getState())
-				.filter(state -> accepts(state))
-				.map(state -> (S)state)
+				.map(block -> block.getBlockData())
+				.filter(data -> accepts(data))
+				.map(data -> (S)data)
 				.collect(Collectors.toSet());
+	}
+
+	@SuppressWarnings("unchecked")
+	protected Map<Block, S> getBlockDatasMap(Event event) {
+		return Arrays.stream(getExpr().getArray(event))
+				.map(block -> new AbstractMap.SimpleEntry<>(block, (S)block.getBlockData()))
+				.filter(entry -> accepts(entry.getValue()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 }

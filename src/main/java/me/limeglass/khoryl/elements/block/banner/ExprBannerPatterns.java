@@ -16,12 +16,12 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.BlockPropertyExpression;
+import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 
 @Name("Banner Patterns")
 @Description("Get banner patterns on a banner.")
 @Since("1.0.3")
-public class ExprBannerPatterns extends BlockPropertyExpression<Banner, Pattern[]> {
+public class ExprBannerPatterns extends BlockStatePropertyExpression<Banner, Pattern[]> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 8)))
@@ -70,6 +70,7 @@ public class ExprBannerPatterns extends BlockPropertyExpression<Banner, Pattern[
 					existing.addAll(patterns);
 					break;
 			}
+			banner.update();
 		}
 	}
 
