@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
+import org.bukkit.block.data.type.BigDripleaf.Tilt;
+import org.bukkit.block.data.type.PointedDripstone.Thickness;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
@@ -38,6 +40,10 @@ public class Types {
 			EnumClassInfo.create(Villager.Type.class, "villagertype").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
 			EnumClassInfo.create(TropicalFish.Pattern.class, "tropicalfishpattern").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
+			EnumClassInfo.create(Tilt.class, "bigleaftilt").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
+			EnumClassInfo.create(Thickness.class, "dripstonethickness").register();
 
 		Classes.registerClass(new ClassInfo<>(MerchantRecipe.class, "merchantrecipe")
 				.user("merchant ?recip(e|ies)")

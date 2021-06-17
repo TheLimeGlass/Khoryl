@@ -19,7 +19,7 @@ public class CondZombieBaby extends EntityPropertyCondition<LivingEntity, Zombie
 
 	@Override
 	protected boolean checkEntity(Zombie zombie) {
-		return zombie.isBaby();
+		return !zombie.isAdult();
 	}
 
 	@Override
