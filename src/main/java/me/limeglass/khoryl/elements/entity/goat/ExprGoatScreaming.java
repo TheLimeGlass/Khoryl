@@ -21,7 +21,7 @@ public class ExprGoatScreaming extends EntityPropertyExpression<LivingEntity, Go
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
-			register(ExprGoatScreaming.class, Boolean.class, "screaming", "livingentities");
+			register(ExprGoatScreaming.class, Boolean.class, "screaming [state]", "livingentities");
 	}
 
 	@Override

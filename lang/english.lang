@@ -6,6 +6,9 @@ types:
 	villagerprofession: profession, villager profession
 	tropicalfishpattern: tropical fish pattern
 	villagertype: villager type
+	thickness: thickness, thiccness, dripstone thickness
+	tilt: big dripleaf tilt, dripleaf tilt, tilt
+	bannerpatterntype: banner pattern type, banner pattern
 
 villagerprofession:
 	armorer: armorer
