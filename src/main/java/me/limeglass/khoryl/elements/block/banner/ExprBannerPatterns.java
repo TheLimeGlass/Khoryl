@@ -3,6 +3,7 @@ package me.limeglass.khoryl.elements.block.banner;
 import java.util.List;
 
 import org.bukkit.block.Banner;
+import org.bukkit.block.Block;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
@@ -14,30 +15,40 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.expressions.base.PropertyExpression;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.util.Version;
+import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
+import me.limeglass.khoryl.lang.BlockStateExpression;
 
 @Name("Banner Patterns")
 @Description("Get banner patterns on a banner.")
 @Since("1.0.3")
-public class ExprBannerPatterns extends BlockStatePropertyExpression<Banner, Pattern[]> {
+public class ExprBannerPatterns extends BlockStateExpression<Banner, Pattern> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 8)))
-			register(ExprBannerPatterns.class, Pattern[].class, "banner patterns", "blocks");
+			PropertyExpression.register(ExprBannerPatterns.class, Pattern.class, "banner patterns", "blocks");
+	}
+
+	@Override
+	public boolean isSingle() {
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+		setBlockExpression((Expression<Block>) exprs[0]);
+		return true;
 	}
 
 	@Override
 	@Nullable
 	protected Pattern[] grab(Banner banner) {
-		List<Pattern> patterns = banner.getPatterns();
-		return patterns.toArray(new Pattern[patterns.size()]);
-	}
-
-	@Override
-	protected String getPropertyName() {
-		return "banner patterns";
+		return banner.getPatterns().stream().toArray(Pattern[]::new);
 	}
 
 	@Nullable
@@ -72,6 +83,11 @@ public class ExprBannerPatterns extends BlockStatePropertyExpression<Banner, Pat
 			}
 			banner.update();
 		}
+	}
+
+	@Override
+	public String toString(@Nullable Event event, boolean debug) {
+		return "banner patterns " + getBlockExpression().toString(event, debug);
 	}
 
 }
