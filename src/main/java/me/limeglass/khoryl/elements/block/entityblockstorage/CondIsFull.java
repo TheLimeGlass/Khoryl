@@ -13,7 +13,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyCondition;
 public class CondIsFull extends BlockStatePropertyCondition<EntityBlockStorage<?>> {
 
 	static {
-		register(CondIsFull.class, PropertyType.BE, "is full", "blocks");
+		register(CondIsFull.class, PropertyType.BE, "full", "blocks");
 	}
 
 	@Override

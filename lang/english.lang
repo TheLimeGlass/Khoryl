@@ -33,6 +33,19 @@ villagertype:
 	swamp: swamp
 	taiga: taiga
 
+tilt:
+	none: none
+	unstable: unstable
+	partial: partial
+	full: full, pinball
+
+thickness:
+	tip_merge: tip merge, merge point, extended tip
+	tip: tip, just the tip, top, top section
+	frustum: frustum, top section
+	middle: middle, middle section
+	base: base
+
 tropicalfishpattern:
 	betty: betty
 	blockfish: blockfish

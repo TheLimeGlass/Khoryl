@@ -17,7 +17,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 public class ExprStorageMaxEntities extends BlockStatePropertyExpression<EntityBlockStorage<?>, Number> {
 
 	static {
-		register(ExprStorageMaxEntities.class, Number.class, "max[imum] entit(ies|y count) (for|in)", "blocks");
+		register(ExprStorageMaxEntities.class, Number.class, "max[imum] entit(ies|y count)", "blocks");
 	}
 
 	@Override

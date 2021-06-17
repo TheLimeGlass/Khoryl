@@ -14,7 +14,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 public class ExprBeaconTier extends BlockStatePropertyExpression<Beacon, Number> {
 
 	static {
-		register(ExprBeaconTier.class, Number.class, "[beacon] tier[s] ", "blocks");
+		register(ExprBeaconTier.class, Number.class, "[beacon] tier[s]", "blocks");
 	}
 
 	@Override
