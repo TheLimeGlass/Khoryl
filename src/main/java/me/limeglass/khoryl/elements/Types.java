@@ -210,39 +210,40 @@ public class Types {
 
 				}));
 
-		Classes.registerClass(new ClassInfo<>(LlamaInventory.class, "llamainventory")
-				.user("llamainventory(ies|s)?")
-				.name("LLama Inventory")
-				.defaultExpression(new EventValueExpression<>(LlamaInventory.class))
-				.parser(new Parser<LlamaInventory>() {
-
-					@Override
-					@Nullable
-					public LlamaInventory parse(String input, ParseContext context) {
-						return null;
-					}
-
-					@Override
-					public boolean canParse(ParseContext context) {
-						return false;
-					}
-
-					@Override
-					public String toString(LlamaInventory inventory, int flags) {
-						return "LlamaInventory " + inventory.toString();
-					}
-
-					@Override
-					public String toVariableNameString(LlamaInventory inventory) {
-						return "llama inventory";
-					}
-
-					@Override
-					public String getVariableNamePattern() {
-						return "\\S+";
-					}
-
-				}));
+		if (Classes.getClassInfoNoError("llamainventory") == null)
+			Classes.registerClass(new ClassInfo<>(LlamaInventory.class, "llamainventory")
+					.user("llamainventory(ies|s)?")
+					.name("LLama Inventory")
+					.defaultExpression(new EventValueExpression<>(LlamaInventory.class))
+					.parser(new Parser<LlamaInventory>() {
+	
+						@Override
+						@Nullable
+						public LlamaInventory parse(String input, ParseContext context) {
+							return null;
+						}
+	
+						@Override
+						public boolean canParse(ParseContext context) {
+							return false;
+						}
+	
+						@Override
+						public String toString(LlamaInventory inventory, int flags) {
+							return "LlamaInventory " + inventory.toString();
+						}
+	
+						@Override
+						public String toVariableNameString(LlamaInventory inventory) {
+							return "llama inventory";
+						}
+	
+						@Override
+						public String getVariableNamePattern() {
+							return "\\S+";
+						}
+	
+					}));
 	}
 
 }

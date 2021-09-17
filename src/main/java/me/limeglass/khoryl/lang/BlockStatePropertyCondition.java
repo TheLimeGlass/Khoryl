@@ -16,6 +16,10 @@ public abstract class BlockStatePropertyCondition<S extends BlockState> extends 
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	public static void register(Class<? extends BlockStatePropertyCondition<?>> condition, String property) {
+		register(condition, property, "blocks");
+	}
+
 	protected abstract boolean checkBlockState(S state);
 
 	@SuppressWarnings("unchecked")

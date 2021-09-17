@@ -16,6 +16,10 @@ public abstract class BlockDataPropertyCondition<S extends BlockData> extends Pr
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	public static void register(Class<? extends BlockDataPropertyCondition<?>> condition, String property) {
+		register(condition, property, "blocks");
+	}
+
 	protected abstract boolean checkBlockData(S data);
 
 	@SuppressWarnings("unchecked")

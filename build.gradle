@@ -1,15 +1,14 @@
 import org.apache.tools.ant.filters.ReplaceTokens
-apply plugin: 'java-library'
-apply plugin: 'eclipse'
 
-configurations {
-    shade
-    compile.extendsFrom shade
+plugins {
+	id 'com.github.johnrengelman.shadow' version '7.0.0'
+	id 'maven-publish'
+	id 'eclipse'
+	id 'java'
 }
 
 repositories {
 	mavenCentral()
-	jcenter()
 
 	//Spigot
 	maven {
@@ -45,29 +44,22 @@ dependencies {
 		transitive = false
 	}
 
-	shade (group: 'org.json', name: 'json', version: '20180813')
+	shadow (group: 'org.json', name: 'json', version: '20180813')
 
 }
 
 processResources {
 	filter ReplaceTokens, tokens: ["version": project.property("version")]
-	from ('lang') {
-        include '**/*'
-        into 'lang/'
-    }
-    from ('documentation') {
-        into 'documentation/'
-    }
-	from (sourceSets.main.resources.srcDirs) {
-		include '**/*.yml'
+	from ("lang/") {
+		include '*.lang'
+		into 'lang/'
 	}
 }
 
-jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)){
-            exclude 'META-INF', 'META-INF/**'
-            exclude '**/*.yml'
-        }
-    }
+shadowJar {
+	configurations = [project.configurations.shadow]
+	archiveVersion = project.property("version")
+	archiveBaseName = project.name
+	classifier = ''
+	minimize()
 }
