@@ -10,9 +10,11 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.block.data.type.BigDripleaf.Tilt;
 import org.bukkit.block.data.type.PointedDripstone.Thickness;
+import org.bukkit.entity.Llama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.LlamaInventory;
 import org.bukkit.inventory.MerchantRecipe;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -44,6 +46,8 @@ public class Types {
 			EnumClassInfo.create(Tilt.class, "bigleaftilt").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
 			EnumClassInfo.create(Thickness.class, "dripstonethickness").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 11)))
+			EnumClassInfo.create(Llama.Color.class, "llamacolor").register();
 
 		Classes.registerClass(new ClassInfo<>(MerchantRecipe.class, "merchantrecipe")
 				.user("merchant ?recip(e|ies)")
@@ -202,6 +206,40 @@ public class Types {
 					@Override
 					protected boolean canBeInstantiated() {
 						return false;
+					}
+
+				}));
+
+		Classes.registerClass(new ClassInfo<>(LlamaInventory.class, "llamainventory")
+				.user("llamainventory(ies|s)?")
+				.name("LLama Inventory")
+				.defaultExpression(new EventValueExpression<>(LlamaInventory.class))
+				.parser(new Parser<LlamaInventory>() {
+
+					@Override
+					@Nullable
+					public LlamaInventory parse(String input, ParseContext context) {
+						return null;
+					}
+
+					@Override
+					public boolean canParse(ParseContext context) {
+						return false;
+					}
+
+					@Override
+					public String toString(LlamaInventory inventory, int flags) {
+						return "LlamaInventory " + inventory.toString();
+					}
+
+					@Override
+					public String toVariableNameString(LlamaInventory inventory) {
+						return "llama inventory";
+					}
+
+					@Override
+					public String getVariableNamePattern() {
+						return "\\S+";
 					}
 
 				}));

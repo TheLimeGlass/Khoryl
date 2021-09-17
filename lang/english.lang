@@ -9,6 +9,7 @@ types:
 	thickness: thickness, thiccness, dripstone thickness
 	tilt: big dripleaf tilt, dripleaf tilt, tilt
 	bannerpatterntype: banner pattern type, banner pattern
+	llamacolor: llamacolour, llama colour, llamar color
 
 villagerprofession:
 	armorer: armorer
@@ -105,3 +106,9 @@ bannerpatterntype:
 	triangle_top: triangle top
 	triangles_bottom: triangles bottom
 	triangles_top: triangles top
+
+llamacolor:
+	brown: brown, poop
+	creamy: creamy
+	gray: gray, grey
+	white: white
