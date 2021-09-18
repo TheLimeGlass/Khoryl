@@ -14,7 +14,7 @@ import me.limeglass.khoryl.lang.BlockDataPropertyExpression;
 public class ExprMaximumDelay extends BlockDataPropertyExpression<Repeater, Integer> {
 
 	static {
-		register(ExprMaximumDelay.class, Integer.class, "maximum [repeater] delay", "blocks");
+		register(ExprMaximumDelay.class, Integer.class, "maximum [repeater] delay");
 	}
 
 	@Override

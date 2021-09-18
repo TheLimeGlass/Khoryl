@@ -26,6 +26,10 @@ public abstract class BlockDataPropertyExpression<S extends BlockData, V> extend
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	public static <S extends BlockData, V> void register(Class<? extends BlockDataPropertyExpression<S, V>> expression, Class<V> returnType, String property) {
+		register(expression, returnType, property, "blocks");
+	}
+
 	@SuppressWarnings({"serial", "unchecked"})
 	@Override
 	public Class<? extends V> getReturnType() {

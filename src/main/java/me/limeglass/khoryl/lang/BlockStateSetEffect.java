@@ -21,7 +21,7 @@ public abstract class BlockStateSetEffect<S extends BlockState> extends SetEffec
 	/*
 	 * Forces the author to remember to update the block state.
 	 */
-	protected abstract void update(S data);
+	abstract void update(S data);
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -18,7 +18,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 public class ExprBeehiveFlower extends BlockStatePropertyExpression<Beehive, Location> {
 
 	static {
-		register(ExprBeehiveFlower.class, Location.class, "[bee[ ]hive] flower [location] ", "blocks");
+		register(ExprBeehiveFlower.class, Location.class, "[bee[ ]hive] flower [location] ");
 	}
 
 	@Override

@@ -17,7 +17,7 @@ import me.limeglass.khoryl.lang.BlockDataPropertyExpression;
 public class ExprRepeaterDelay extends BlockDataPropertyExpression<Repeater, Integer> {
 
 	static {
-		register(ExprRepeaterDelay.class, Integer.class, "repeater [tick] delay", "blocks");
+		register(ExprRepeaterDelay.class, Integer.class, "repeater [tick] delay");
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class ExprRepeaterDelay extends BlockDataPropertyExpression<Repeater, Int
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
-		if (mode == ChangeMode.SET)
+		if (mode != ChangeMode.REMOVE_ALL)
 			return CollectionUtils.array(Number.class);
 		return null;
 	}
@@ -44,8 +44,33 @@ public class ExprRepeaterDelay extends BlockDataPropertyExpression<Repeater, Int
 		if (delta[0] == null)
 			return;
 		int delay = ((Number) delta[0]).intValue();
-		for (Repeater repeater : getBlockDatas(event))
-			repeater.setDelay(delay);
+		switch (mode) {
+			case ADD:
+				for (Repeater repeater : getBlockDatas(event)) {
+					int exsisting = repeater.getDelay();
+					repeater.setDelay(delay + exsisting);
+				}
+				break;
+			case RESET:
+			case DELETE:
+				for (Repeater repeater : getBlockDatas(event))
+					repeater.setDelay(0);
+				break;
+			case REMOVE:
+				for (Repeater repeater : getBlockDatas(event)) {
+					int exsisting = repeater.getDelay();
+					repeater.setDelay(delay - exsisting);
+				}
+				break;
+			case REMOVE_ALL:
+				break;
+			case SET:
+				for (Repeater repeater : getBlockDatas(event))
+					repeater.setDelay(delay);
+				break;
+			default:
+				break;
+		}
 	}
 
 }

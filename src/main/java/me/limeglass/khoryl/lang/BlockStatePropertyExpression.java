@@ -24,6 +24,10 @@ public abstract class BlockStatePropertyExpression<S extends BlockState, V> exte
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	public static <S extends BlockState, V> void register(Class<? extends BlockStatePropertyExpression<S, V>> expression, Class<V> returnType, String property) {
+		register(expression, returnType, property, "blocks");
+	}
+
 	@SuppressWarnings({"serial", "unchecked"})
 	@Override
 	public Class<? extends V> getReturnType() {

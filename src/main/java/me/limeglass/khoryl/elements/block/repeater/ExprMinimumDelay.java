@@ -14,7 +14,7 @@ import me.limeglass.khoryl.lang.BlockDataPropertyExpression;
 public class ExprMinimumDelay extends BlockDataPropertyExpression<Repeater, Integer> {
 
 	static {
-		register(ExprMinimumDelay.class, Integer.class, "minimum [repeater] delay", "blocks");
+		register(ExprMinimumDelay.class, Integer.class, "minimum [repeater] delay");
 	}
 
 	@Override
