@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.bukkit.DyeColor;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.block.data.type.BigDripleaf.Tilt;
@@ -13,6 +14,7 @@ import org.bukkit.block.data.type.PointedDripstone.Thickness;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.LlamaInventory;
 import org.bukkit.inventory.MerchantRecipe;
@@ -48,6 +50,42 @@ public class Types {
 			EnumClassInfo.create(Thickness.class, "dripstonethickness").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 11)))
 			EnumClassInfo.create(Llama.Color.class, "llamacolor").register();
+		EnumClassInfo.create(ItemFlag.class, "itemflag").register();
+
+		if (Classes.getExactClassInfo(BlockState.class) != null)
+			Classes.registerClass(new ClassInfo<>(BlockState.class, "blockstate")
+					.user("block ?states?")
+					.name("Block State")
+					.defaultExpression(new EventValueExpression<>(BlockState.class))
+					.parser(new Parser<BlockState>() {
+	
+						@Override
+						@Nullable
+						public BlockState parse(String input, ParseContext context) {
+							return null;
+						}
+	
+						@Override
+						public boolean canParse(ParseContext context) {
+							return false;
+						}
+	
+						@Override
+						public String toString(BlockState state, int flags) {
+							return toVariableNameString(state);
+						}
+	
+						@Override
+						public String toVariableNameString(BlockState state) {
+							return "Block state " + state.toString();
+						}
+	
+						@Override
+						public String getVariableNamePattern() {
+							return "\\S+";
+						}
+	
+					}));
 
 		Classes.registerClass(new ClassInfo<>(MerchantRecipe.class, "merchantrecipe")
 				.user("merchant ?recip(e|ies)")
