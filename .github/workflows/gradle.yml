@@ -26,3 +26,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Upload Nightly Build
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: khoryl-nightly
+        path: build/libs/Khoryl.jar
