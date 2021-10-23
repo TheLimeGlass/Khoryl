@@ -31,4 +31,4 @@ jobs:
       if: success()
       with:
         name: khoryl-nightly
-        path: build/libs/Khoryl.jar
+        path: build/libs/*.jar
