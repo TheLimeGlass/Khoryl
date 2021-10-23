@@ -30,7 +30,6 @@ public class ExprLlamaColor extends EntityPropertyExpression<LivingEntity, Llama
 	}
 
 	@Override
-	@Nullable
 	protected Llama.Color grab(Llama llama) {
 		return llama.getColor();
 	}
