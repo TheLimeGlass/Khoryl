@@ -11,9 +11,11 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.block.data.type.BigDripleaf.Tilt;
 import org.bukkit.block.data.type.PointedDripstone.Thickness;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.LlamaInventory;
@@ -51,6 +53,10 @@ public class Types {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 11)))
 			EnumClassInfo.create(Llama.Color.class, "llamacolor").register();
 		EnumClassInfo.create(ItemFlag.class, "itemflag").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
+			EnumClassInfo.create(ArmorStand.LockType.class, "locktype").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 15)))
+			EnumClassInfo.create(EquipmentSlot.class, "equipmentslot").register();
 
 		if (Classes.getExactClassInfo(BlockState.class) != null)
 			Classes.registerClass(new ClassInfo<>(BlockState.class, "blockstate")

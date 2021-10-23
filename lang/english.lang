@@ -10,6 +10,9 @@ types:
 	tilt: big dripleaf tilt, dripleaf tilt, tilt
 	bannerpatterntype: banner pattern type, banner pattern
 	llamacolor: llamacolour, llama colour, llamar color
+	itemflag: item flags, item flag
+	locktype: lock type, armor stand lock type, armour stand lock type, armor stand lock, armour stand lock
+	equipmentslot: equipment slot
 
 villagerprofession:
 	armorer: armorer
@@ -112,3 +115,25 @@ llamacolor:
 	creamy: creamy
 	gray: gray, grey
 	white: white
+
+itemflag:
+	hide_attributes: hide attributes
+	hide_destroys: hide destroys
+	hide_dye: hide dye
+	hide_enchants: hide enchants
+	hide_placed_on: hide placed on, hide placing
+	hide_potion_effects: hide potion effects, hide potions
+	hide_unbreakable: hide unbreakable
+
+locktype:
+	adding: adding, add
+	adding_or_changing: adding or changing, add or change
+	removing_or_changing: removing or changing, remove or change
+
+equipmentslot:
+	chest: chest, chestplate
+	feet: feet, boots
+	hand: hand, holding
+	head: head, helmet
+	legs: legs, leggings
+	off_hand: off hand, other hand

@@ -1,7 +1,6 @@
 package me.limeglass.khoryl.elements.entity.goat;
 
 import org.bukkit.entity.Goat;
-import org.bukkit.entity.LivingEntity;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
@@ -11,10 +10,10 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 @Name("Goat Is Screaming")
 @Description("Check if the goat(s) are screaming.")
 @Since("1.0.3")
-public class CondIsScreaming extends EntityPropertyCondition<LivingEntity, Goat> {
+public class CondIsScreaming extends EntityPropertyCondition<Goat> {
 
 	static {
-		register(CondIsScreaming.class, "screaming", "livingentities");
+		register(CondIsScreaming.class, "screaming");
 	}
 
 	@Override

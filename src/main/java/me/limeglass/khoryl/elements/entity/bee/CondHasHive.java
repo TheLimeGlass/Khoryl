@@ -1,7 +1,6 @@
 package me.limeglass.khoryl.elements.entity.bee;
 
 import org.bukkit.entity.Bee;
-import org.bukkit.entity.LivingEntity;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
@@ -11,10 +10,10 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 @Name("Bee Has Hive")
 @Description("Check if the bee(s) have a hive location set.")
 @Since("1.0.2")
-public class CondHasHive extends EntityPropertyCondition<LivingEntity, Bee> {
+public class CondHasHive extends EntityPropertyCondition<Bee> {
 
 	static {
-		register(CondHasHive.class, PropertyType.HAVE, "[a] hive [location]", "livingentities");
+		register(CondHasHive.class, PropertyType.HAVE, "[a] hive [location]");
 	}
 
 	@Override

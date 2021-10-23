@@ -1,7 +1,6 @@
 package me.limeglass.khoryl.elements.entity.merchant;
 
 import org.bukkit.entity.AbstractVillager;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.Merchant;
 
 import ch.njol.skript.doc.Description;
@@ -12,10 +11,10 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 @Name("Merchant Trading")
 @Description("Check if the villager is currently trading with someone.")
 @Since("1.0.0")
-public class CondTrading extends EntityPropertyCondition<LivingEntity, AbstractVillager> {
+public class CondTrading extends EntityPropertyCondition<AbstractVillager> {
 
 	static {
-		register(CondTrading.class, PropertyType.BE, "trading", "livingentities");
+		register(CondTrading.class, PropertyType.BE, "trading");
 	}
 
 	@Override

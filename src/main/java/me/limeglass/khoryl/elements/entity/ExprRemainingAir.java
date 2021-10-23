@@ -1,4 +1,4 @@
-package me.limeglass.khoryl.elements.expressions;
+package me.limeglass.khoryl.elements.entity;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;

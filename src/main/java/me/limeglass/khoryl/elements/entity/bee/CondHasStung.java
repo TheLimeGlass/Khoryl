@@ -1,7 +1,6 @@
 package me.limeglass.khoryl.elements.entity.bee;
 
 import org.bukkit.entity.Bee;
-import org.bukkit.entity.LivingEntity;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
@@ -11,10 +10,10 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 @Name("Bee Has Stung")
 @Description("Check if the bee(s) have stung before.")
 @Since("1.0.2")
-public class CondHasStung extends EntityPropertyCondition<LivingEntity, Bee> {
+public class CondHasStung extends EntityPropertyCondition<Bee> {
 
 	static {
-		register(CondHasStung.class, PropertyType.HAVE, "stung", "livingentities");
+		register(CondHasStung.class, PropertyType.HAVE, "stung");
 	}
 
 	@Override
