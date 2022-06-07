@@ -13,6 +13,9 @@ types:
 	itemflag: item flags, item flag
 	locktype: lock type, armor stand lock type, armour stand lock type, armor stand lock, armour stand lock
 	equipmentslot: equipment slot
+	frogvariant: frog variant
+	sculksensorphase: sculk sensor phase
+	axolotlvariant: axolotl variant
 
 villagerprofession:
 	armorer: armorer
@@ -137,3 +140,20 @@ equipmentslot:
 	head: head, helmet
 	legs: legs, leggings
 	off_hand: off hand, other hand
+
+frogvariant:
+	temperate: temperate, brown orange, brownish orange
+	warm: warm, grey, gray
+	cold: cold, green
+	
+sculksensorphase:
+	inactive: inactive
+    active: active
+	cooldown: cooldown
+
+axolotlvariant:
+	lucy: lucy, pink, leucistic
+	wild: wild, brown
+	gold: gold, golden
+    cyan: cyan
+    blue: blue

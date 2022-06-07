@@ -11,7 +11,9 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.block.data.type.BigDripleaf.Tilt;
 import org.bukkit.block.data.type.PointedDripstone.Thickness;
+import org.bukkit.block.data.type.SculkSensor.Phase;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Frog.Variant;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
@@ -57,6 +59,10 @@ public class Types {
 			EnumClassInfo.create(ArmorStand.LockType.class, "locktype").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 15)))
 			EnumClassInfo.create(EquipmentSlot.class, "equipmentslot").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
+			EnumClassInfo.create(Variant.class, "frogvariant").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
+			EnumClassInfo.create(Phase.class, "sculksensorphase").register();
 
 		if (Classes.getExactClassInfo(BlockState.class) != null)
 			Classes.registerClass(new ClassInfo<>(BlockState.class, "blockstate")
@@ -84,11 +90,6 @@ public class Types {
 						@Override
 						public String toVariableNameString(BlockState state) {
 							return "Block state " + state.toString();
-						}
-	
-						@Override
-						public String getVariableNamePattern() {
-							return "\\S+";
 						}
 	
 					}));
@@ -119,11 +120,6 @@ public class Types {
 					@Override
 					public String toVariableNameString(MerchantRecipe recipe) {
 						return "Merchant recipe " + ItemType.toString(recipe.getResult());
-					}
-
-					@Override
-					public String getVariableNamePattern() {
-						return "\\S+";
 					}
 
 				}).serializer(new Serializer<MerchantRecipe>() {
@@ -215,11 +211,6 @@ public class Types {
 						return "Pattern pattern " + pattern.getPattern().name().toLowerCase(Locale.US) + " colored " + pattern.getColor().name().toLowerCase(Locale.US);
 					}
 
-					@Override
-					public String getVariableNamePattern() {
-						return "\\S+";
-					}
-
 				}).serializer(new Serializer<Pattern>() {
 
 					@Override
@@ -280,11 +271,6 @@ public class Types {
 						@Override
 						public String toVariableNameString(LlamaInventory inventory) {
 							return "llama inventory";
-						}
-	
-						@Override
-						public String getVariableNamePattern() {
-							return "\\S+";
 						}
 	
 					}));

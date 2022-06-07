@@ -2,6 +2,7 @@ package me.limeglass.khoryl.elements.block.hive;
 
 import org.bukkit.block.Beehive;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
@@ -13,7 +14,8 @@ import me.limeglass.khoryl.lang.BlockStatePropertyCondition;
 public class CondHiveSedated extends BlockStatePropertyCondition<Beehive> {
 
 	static {
-		register(CondHiveSedated.class, PropertyType.BE, "sedated", "blocks");
+		if (Skript.methodExists(Beehive.class, "isSedated"))
+			register(CondHiveSedated.class, PropertyType.BE, "sedated", "blocks");
 	}
 
 	@Override

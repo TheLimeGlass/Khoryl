@@ -16,6 +16,10 @@ public abstract class BlockDataPropertyCondition<S extends BlockData> extends Pr
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	public static void register(Class<? extends BlockDataPropertyCondition<?>> condition, PropertyType propertyType, String property) {
+		register(condition, propertyType, property, "blocks");
+	}
+
 	public static void register(Class<? extends BlockDataPropertyCondition<?>> condition, String property) {
 		register(condition, property, "blocks");
 	}

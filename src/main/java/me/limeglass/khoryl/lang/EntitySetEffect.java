@@ -20,7 +20,7 @@ public abstract class EntitySetEffect<E extends Entity> extends SetEffect<Entity
 		register(effect, property, "entities");
 	}
 
-	public abstract void apply(E entity, boolean boo);
+	public abstract void apply(E entity, boolean value);
 
 	@Override
 	protected void execute(Event event) {

@@ -16,6 +16,10 @@ public abstract class BlockDataSetEffect<S extends BlockData> extends SetEffect<
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
+	protected static void register(Class<? extends SetEffect<?>> effect, String property) {
+		register(effect, property, "blocks");
+	}
+
 	protected abstract void execute(S data, boolean value);
 
 	@SuppressWarnings("unchecked")

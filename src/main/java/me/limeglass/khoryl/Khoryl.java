@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ch.njol.skript.Metrics;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 
