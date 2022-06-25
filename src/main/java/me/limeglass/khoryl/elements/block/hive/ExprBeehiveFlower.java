@@ -20,7 +20,7 @@ public class ExprBeehiveFlower extends BlockStatePropertyExpression<Beehive, Loc
 
 	static {
 		if (Skript.methodExists(Beehive.class, "getFlower"))
-			register(ExprBeehiveFlower.class, Location.class, "[bee[ ]hive] flower [location] ");
+			register(ExprBeehiveFlower.class, Location.class, "[bee[ ]hive] flower [location]");
 	}
 
 	@Override

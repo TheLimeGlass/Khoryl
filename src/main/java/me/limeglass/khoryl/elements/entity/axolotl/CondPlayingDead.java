@@ -16,7 +16,7 @@ public class CondPlayingDead extends EntityPropertyCondition<Axolotl> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
-			register(CondPlayingDead.class, "playing dead");
+			register(CondPlayingDead.class, "playing dead", "livingentities");
 	}
 
 	@Override

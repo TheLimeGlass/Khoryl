@@ -1,4 +1,4 @@
-version: @version@
+version: 1.0.5
 
 # @an makes the pattern allow for `an`.
 
@@ -148,12 +148,12 @@ frogvariant:
 	
 sculksensorphase:
 	inactive: inactive
-    active: active
+	active: active
 	cooldown: cooldown
 
 axolotlvariant:
 	lucy: lucy, pink, leucistic
 	wild: wild, brown
 	gold: gold, golden
-    cyan: cyan
-    blue: blue
+	cyan: cyan
+	blue: blue

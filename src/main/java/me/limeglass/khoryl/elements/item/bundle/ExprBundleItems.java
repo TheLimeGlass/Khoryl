@@ -19,7 +19,7 @@ import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.ItemMetaExpression;
 
 @Name("Bundle Items")
-@Description("Get or change the items inside a bundle. The bundle must be from an ItemType.")
+@Description("Get or change the items inside a bundle. The bundle must start off as an ItemType.")
 @Since("1.0.4")
 public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 

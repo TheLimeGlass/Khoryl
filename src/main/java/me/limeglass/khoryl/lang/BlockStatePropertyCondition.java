@@ -20,6 +20,10 @@ public abstract class BlockStatePropertyCondition<S extends BlockState> extends 
 		register(condition, property, "blocks");
 	}
 
+	public static void register(Class<? extends BlockStatePropertyCondition<?>> condition, PropertyType type, String property) {
+		register(condition, type, property, "blocks");
+	}
+
 	protected abstract boolean checkBlockState(S state);
 
 	@SuppressWarnings("unchecked")

@@ -43,11 +43,11 @@ dependencies {
 	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.19-R0.1-SNAPSHOT')
 
 	//Skript
-	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.6.1') {
+	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.6.2') {
 		transitive = false
 	}
 
-	shadow (group: 'org.json', name: 'json', version: '20211205')
+	shadow (group: 'org.json', name: 'json', version: '20220320')
 
 }
 

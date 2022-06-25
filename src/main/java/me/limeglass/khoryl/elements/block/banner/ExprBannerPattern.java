@@ -20,10 +20,10 @@ import ch.njol.util.coll.CollectionUtils;
 @Name("Banner Pattern")
 @Description("Create a banner pattern.")
 @Since("1.0.3")
-public class ExprPattern extends SimpleExpression<Pattern> {
+public class ExprBannerPattern extends SimpleExpression<Pattern> {
 
 	static {
-		Skript.registerExpression(ExprPattern.class, Pattern.class, ExpressionType.COMBINED, "%bannerpatterntype% [banner] pattern colo[u]red %color%");
+		Skript.registerExpression(ExprBannerPattern.class, Pattern.class, ExpressionType.COMBINED, "%bannerpatterntype% [banner] pattern colo[u]red %color%");
 	}
 
 	private Expression<PatternType> type;

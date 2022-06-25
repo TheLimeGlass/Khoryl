@@ -16,7 +16,7 @@ public class SetPlayingDead extends EntitySetEffect<Axolotl> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
-			register(SetPlayingDead.class, "[a[n]] [armo[u]r stand] marker");
+			register(SetPlayingDead.class, "play[ing] dead", "livingentities");
 	}
 
 	@Override

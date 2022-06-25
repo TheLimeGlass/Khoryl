@@ -18,7 +18,7 @@ public class SetAI extends EntitySetEffect<LivingEntity> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 11)))
-			register(SetAI.class, "[have] (ai|artificial intelligence)");
+			register(SetAI.class, "[have] (ai|artificial intelligence)", "livingentities");
 	}
 
 	@Override

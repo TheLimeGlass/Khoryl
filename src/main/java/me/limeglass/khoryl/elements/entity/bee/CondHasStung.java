@@ -13,7 +13,7 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 public class CondHasStung extends EntityPropertyCondition<Bee> {
 
 	static {
-		register(CondHasStung.class, PropertyType.HAVE, "stung");
+		register(CondHasStung.class, PropertyType.HAVE, "stung", "livingentities");
 	}
 
 	@Override

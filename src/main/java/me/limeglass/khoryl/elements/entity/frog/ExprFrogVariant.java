@@ -18,11 +18,11 @@ import me.limeglass.khoryl.lang.EntityPropertyExpression;
 @Name("Frog Variant")
 @Description("Get the variant of a frog.")
 @Since("1.0.5")
-public class ExprVariant extends EntityPropertyExpression<LivingEntity, Frog, Variant> {
+public class ExprFrogVariant extends EntityPropertyExpression<LivingEntity, Frog, Variant> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
-			register(ExprVariant.class, Variant.class, "frog variant", "livingentities");
+			register(ExprFrogVariant.class, Variant.class, "frog variant", "livingentities");
 	}
 
 	@Override

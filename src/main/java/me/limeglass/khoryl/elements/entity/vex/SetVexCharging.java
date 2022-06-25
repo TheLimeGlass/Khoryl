@@ -10,10 +10,10 @@ import me.limeglass.khoryl.lang.EntitySetEffect;
 @Name("Vex Charging")
 @Description("Set if vexes are to be charging.")
 @Since("1.0.4")
-public class SetCharging extends EntitySetEffect<Vex> {
+public class SetVexCharging extends EntitySetEffect<Vex> {
 
 	static {
-		register(SetCharging.class, "vex charg(e|ing)");
+		register(SetVexCharging.class, "vex charg(e|ing)");
 	}
 
 	@Override

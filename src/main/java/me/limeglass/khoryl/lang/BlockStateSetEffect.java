@@ -16,12 +16,11 @@ public abstract class BlockStateSetEffect<S extends BlockState> extends SetEffec
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
-	protected abstract void execute(S data, boolean value);
+	protected static void register(Class<? extends SetEffect<?>> effect, String property) {
+		register(effect, property, "blocks");
+	}
 
-	/*
-	 * Forces the author to remember to update the block state.
-	 */
-	abstract void update(S data);
+	protected abstract void execute(S data, boolean value);
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -37,7 +36,7 @@ public abstract class BlockStateSetEffect<S extends BlockState> extends SetEffec
 			}
 			S complete = (S) state;
 			execute(complete, value);
-			update(complete);
+			complete.update(true);
 		}
 	}
 

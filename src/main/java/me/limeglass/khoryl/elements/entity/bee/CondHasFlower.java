@@ -13,7 +13,7 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 public class CondHasFlower extends EntityPropertyCondition<Bee> {
 
 	static {
-		register(CondHasFlower.class, PropertyType.HAVE, "[a] flower [location]");
+		register(CondHasFlower.class, PropertyType.HAVE, "[a] flower [location]", "livingentities");
 	}
 
 	@Override

@@ -21,10 +21,10 @@ import me.limeglass.khoryl.lang.EntitySyntax;
 @Name("Merchant Recipes")
 @Description("Set/removes the spot the recipe should be at.")
 @Since("1.0.0")
-public class EffMerchantRecipe extends Effect implements EntitySyntax<AbstractVillager> {
+public class EffMerchantMerchantRecipe extends Effect implements EntitySyntax<AbstractVillager> {
 
 	static {
-		Skript.registerEffect(EffMerchantRecipe.class, "(1¦set|2¦remove) [merchant] recipe at [index] %number% [to %merchantrecipe%] (for|of) [villager] %livingentity%");
+		Skript.registerEffect(EffMerchantMerchantRecipe.class, "(1¦set|2¦remove) [merchant] recipe at [index] %number% [to %merchantrecipe%] (for|of) [villager] %livingentity%");
 	}
 
 	private Expression<MerchantRecipe> recipe;

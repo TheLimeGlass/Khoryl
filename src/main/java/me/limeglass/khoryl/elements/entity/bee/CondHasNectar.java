@@ -13,7 +13,7 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 public class CondHasNectar extends EntityPropertyCondition<Bee> {
 
 	static {
-		register(CondHasNectar.class, PropertyType.HAVE, "nectar");
+		register(CondHasNectar.class, PropertyType.HAVE, "nectar", "livingentities");
 	}
 
 	@Override

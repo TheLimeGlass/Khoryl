@@ -12,11 +12,11 @@ import me.limeglass.khoryl.lang.EntityPropertyCondition;
 @Name("Strider Shivering")
 @Description("Check if a strider is shivering.")
 @Since("1.0.4")
-public class CondShivering extends EntityPropertyCondition<Strider> {
+public class CondStriderShivering extends EntityPropertyCondition<Strider> {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 16)))
-			register(CondShivering.class, "[strider] shivering");
+			register(CondStriderShivering.class, "[strider] shivering");
 	}
 
 	@Override

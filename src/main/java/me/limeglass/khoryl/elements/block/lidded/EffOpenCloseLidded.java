@@ -15,7 +15,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.util.Version;
 import ch.njol.util.Kleenean;
-import me.limeglass.khoryl.elements.entity.merchant.EffMerchantRecipe;
 
 @Name("Open/Close Lidded")
 @Description("Set to open or close a lidded block. (Chest, Barrel, Shulker, Etc)")
@@ -24,7 +23,7 @@ public class EffOpenCloseLidded extends Effect {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 16)))
-			Skript.registerEffect(EffMerchantRecipe.class, "(1¦open|2¦close) [lidded] blocks %blocks%");
+			Skript.registerEffect(EffOpenCloseLidded.class, "(1¦open|2¦close) [lidded] blocks %blocks%");
 	}
 
 	private Expression<Block> blocks;

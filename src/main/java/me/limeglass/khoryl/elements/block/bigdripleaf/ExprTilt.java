@@ -17,8 +17,8 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.BlockDataPropertyExpression;
 
-@Name("BigDripleaf Tilt")
-@Description("Get the tilt of a BigDripleaf.")
+@Name("Big Dripleaf Tilt")
+@Description("Get the tilt of a Big Dripleaf.")
 @Since("1.0.3")
 public class ExprTilt extends BlockDataPropertyExpression<BigDripleaf, Tilt> {
 
