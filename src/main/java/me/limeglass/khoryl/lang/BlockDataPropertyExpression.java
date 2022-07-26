@@ -3,7 +3,6 @@ package me.limeglass.khoryl.lang;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.bukkit.block.Block;
@@ -53,15 +52,6 @@ public abstract class BlockDataPropertyExpression<S extends BlockData, V> extend
 			return null;
 		}
 		return grab((S) data);
-	}
-
-	@SuppressWarnings("unchecked")
-	protected Set<S> getBlockDatas(Event event) {
-		return Arrays.stream(getExpr().getArray(event))
-				.map(block -> block.getBlockData())
-				.filter(data -> accepts(data))
-				.map(data -> (S)data)
-				.collect(Collectors.toSet());
 	}
 
 	@SuppressWarnings("unchecked")

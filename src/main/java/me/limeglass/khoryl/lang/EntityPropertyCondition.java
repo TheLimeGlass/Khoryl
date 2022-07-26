@@ -4,7 +4,10 @@ import org.bukkit.entity.Entity;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.conditions.base.PropertyCondition;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.log.ErrorQuality;
+import ch.njol.util.Kleenean;
 import me.limeglass.khoryl.Khoryl;
 
 public abstract class EntityPropertyCondition<P extends Entity> extends PropertyCondition<Entity> implements EntitySyntax<P> {
@@ -24,6 +27,24 @@ public abstract class EntityPropertyCondition<P extends Entity> extends Property
 	}
 
 	protected abstract boolean checkEntity(P entity);
+
+	private int matchedPattern;
+
+	protected int getMatchedPattern() {
+		return matchedPattern;
+	}
+
+	protected boolean negated(boolean provided) {
+		return provided;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+		setExpr((Expression<? extends P>) exprs[0]);
+		setNegated(negated(matchedPattern == 1));
+		return true;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

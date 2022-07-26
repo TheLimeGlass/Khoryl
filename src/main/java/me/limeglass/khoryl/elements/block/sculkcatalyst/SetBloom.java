@@ -20,8 +20,9 @@ public class SetBloom extends BlockDataSetEffect<SculkCatalyst> {
 	}
 
 	@Override
-	protected void execute(SculkCatalyst sculk, boolean value) {
+	protected SculkCatalyst updateBlockData(SculkCatalyst sculk, boolean value) {
 		sculk.setBloom(value);
+		return sculk;
 	}
 
 	@Override

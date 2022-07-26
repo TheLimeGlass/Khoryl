@@ -56,6 +56,7 @@ public class ExprCandleCount extends BlockDataPropertyExpression<Candle, Number>
 					Candle candle = entry.getValue();
 					int existing = candle.getCandles();
 					candle.setCandles(existing + count);
+					entry.getKey().setBlockData(candle);
 				}
 				break;
 			case REMOVE:
@@ -63,16 +64,23 @@ public class ExprCandleCount extends BlockDataPropertyExpression<Candle, Number>
 					Candle candle = entry.getValue();
 					int existing = candle.getCandles();
 					candle.setCandles(existing - count);
+					entry.getKey().setBlockData(candle);
 				}
 				break;
 			case DELETE:
 			case RESET:
-				for (Entry<Block, Candle> entry : getBlockDatasMap(event).entrySet())
-					entry.getValue().setCandles(0);
+				for (Entry<Block, Candle> entry : getBlockDatasMap(event).entrySet()) {
+					Candle candle = entry.getValue();
+					candle.setCandles(0);
+					entry.getKey().setBlockData(candle);
+				}
 				break;
 			case SET:
-				for (Entry<Block, Candle> entry : getBlockDatasMap(event).entrySet())
-					entry.getValue().setCandles(count);
+				for (Entry<Block, Candle> entry : getBlockDatasMap(event).entrySet()) {
+					Candle candle = entry.getValue();
+					candle.setCandles(count);
+					entry.getKey().setBlockData(candle);
+				}
 				break;
 			default:
 				break;

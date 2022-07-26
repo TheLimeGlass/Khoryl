@@ -51,8 +51,11 @@ public class ExprDripstoneThickness extends BlockDataPropertyExpression<PointedD
 		if (delta[0] == null)
 			return;
 		Thickness thickness = (Thickness) delta[0];
-		for (Entry<Block, PointedDripstone> entry : getBlockDatasMap(event).entrySet())
-			entry.getValue().setThickness(thickness);
+		for (Entry<Block, PointedDripstone> entry : getBlockDatasMap(event).entrySet()) {
+			PointedDripstone dripstone = entry.getValue();
+			dripstone.setThickness(thickness);
+			entry.getKey().setBlockData(dripstone);
+		}
 	}
 
 }

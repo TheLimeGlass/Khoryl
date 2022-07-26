@@ -48,7 +48,7 @@ public abstract class BlockDataExpression<S extends BlockData, V> extends Simple
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Set<S> getBlockDatas(Event event) {
+	private Set<S> getBlockDatas(Event event) {
 		return Arrays.stream(blocks.getArray(event))
 				.map(block -> block.getBlockData())
 				.filter(data -> accepts(data))

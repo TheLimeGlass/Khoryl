@@ -50,8 +50,11 @@ public class ExprBerry extends BlockDataPropertyExpression<CaveVines, Boolean> {
 		if (delta[0] == null)
 			return;
 		Boolean berries = (Boolean) delta[0];
-		for (Entry<Block, CaveVines> entry : getBlockDatasMap(event).entrySet())
-			entry.getValue().setBerries(berries);
+		for (Entry<Block, CaveVines> entry : getBlockDatasMap(event).entrySet()) {
+			CaveVines vines = entry.getValue();
+			vines.setBerries(berries);
+			entry.getKey().setBlockData(vines);
+		}
 	}
 
 }

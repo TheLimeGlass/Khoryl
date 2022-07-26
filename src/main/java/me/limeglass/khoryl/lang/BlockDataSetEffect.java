@@ -20,7 +20,7 @@ public abstract class BlockDataSetEffect<S extends BlockData> extends SetEffect<
 		register(effect, property, "blocks");
 	}
 
-	protected abstract void execute(S data, boolean value);
+	protected abstract S updateBlockData(S data, boolean value);
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -34,7 +34,7 @@ public abstract class BlockDataSetEffect<S extends BlockData> extends SetEffect<
 							+ " in property expression '" + getPropertyName() + "'", ErrorQuality.SEMANTIC_ERROR);
 				continue;
 			}
-			execute((S) data, value);
+			block.setBlockData(updateBlockData((S) data, value));
 		}
 	}
 

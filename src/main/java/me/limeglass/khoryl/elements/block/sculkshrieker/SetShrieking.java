@@ -20,8 +20,9 @@ public class SetShrieking extends BlockDataSetEffect<SculkShrieker> {
 	}
 
 	@Override
-	protected void execute(SculkShrieker sculk, boolean value) {
+	protected SculkShrieker updateBlockData(SculkShrieker sculk, boolean value) {
 		sculk.setShrieking(value);
+		return sculk;
 	}
 
 	@Override

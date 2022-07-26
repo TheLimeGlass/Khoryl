@@ -20,8 +20,9 @@ public class SetHasEye extends BlockDataSetEffect<EndPortalFrame> {
 	}
 
 	@Override
-	protected void execute(EndPortalFrame frame, boolean value) {
+	protected EndPortalFrame updateBlockData(EndPortalFrame frame, boolean value) {
 		frame.setEye(value);
+		return frame;
 	}
 
 	@Override

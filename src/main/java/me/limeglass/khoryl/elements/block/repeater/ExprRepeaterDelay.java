@@ -1,5 +1,8 @@
 package me.limeglass.khoryl.elements.block.repeater;
 
+import java.util.Map.Entry;
+
+import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Repeater;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
@@ -46,27 +49,37 @@ public class ExprRepeaterDelay extends BlockDataPropertyExpression<Repeater, Int
 		int delay = ((Number) delta[0]).intValue();
 		switch (mode) {
 			case ADD:
-				for (Repeater repeater : getBlockDatas(event)) {
+				for (Entry<Block, Repeater> entry : getBlockDatasMap(event).entrySet()) {
+					Repeater repeater = entry.getValue();
 					int exsisting = repeater.getDelay();
 					repeater.setDelay(delay + exsisting);
+					entry.getKey().setBlockData(repeater);
 				}
 				break;
 			case RESET:
 			case DELETE:
-				for (Repeater repeater : getBlockDatas(event))
+				for (Entry<Block, Repeater> entry : getBlockDatasMap(event).entrySet()) {
+					Repeater repeater = entry.getValue();
 					repeater.setDelay(0);
+					entry.getKey().setBlockData(repeater);
+				}
 				break;
 			case REMOVE:
-				for (Repeater repeater : getBlockDatas(event)) {
+				for (Entry<Block, Repeater> entry : getBlockDatasMap(event).entrySet()) {
+					Repeater repeater = entry.getValue();
 					int exsisting = repeater.getDelay();
 					repeater.setDelay(delay - exsisting);
+					entry.getKey().setBlockData(repeater);
 				}
 				break;
 			case REMOVE_ALL:
 				break;
 			case SET:
-				for (Repeater repeater : getBlockDatas(event))
+				for (Entry<Block, Repeater> entry : getBlockDatasMap(event).entrySet()) {
+					Repeater repeater = entry.getValue();
 					repeater.setDelay(delay);
+					entry.getKey().setBlockData(repeater);
+				}
 				break;
 			default:
 				break;

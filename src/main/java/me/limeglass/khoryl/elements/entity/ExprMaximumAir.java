@@ -16,7 +16,7 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 
 @Name("Maximum Air")
-@Description("Returns the maximum amount of air the living entity can have, in ticks.")
+@Description("Returns the maximum amount of air the living entity can have in ticks.")
 @Examples("set {_max} to the maximum air of target entity")
 @Since("1.0.0")
 public class ExprMaximumAir extends SimplePropertyExpression<LivingEntity, Timespan> {
@@ -42,8 +42,8 @@ public class ExprMaximumAir extends SimplePropertyExpression<LivingEntity, Times
 		return Timespan.fromTicks_i(entity.getMaximumAir());
 	}
 
-	@Nullable
 	@Override
+	@Nullable
 	public Class<?>[] acceptChange(ChangeMode mode) {
 		if (mode == ChangeMode.ADD || mode == ChangeMode.REMOVE || mode == ChangeMode.SET)
 			return CollectionUtils.array(Timespan.class);

@@ -51,8 +51,11 @@ public class ExprTilt extends BlockDataPropertyExpression<BigDripleaf, Tilt> {
 		if (delta[0] == null)
 			return;
 		Tilt tilt = (Tilt) delta[0];
-		for (Entry<Block, BigDripleaf> entry : getBlockDatasMap(event).entrySet())
-			entry.getValue().setTilt(tilt);
+		for (Entry<Block, BigDripleaf> entry : getBlockDatasMap(event).entrySet()) {
+			BigDripleaf dripleaf = entry.getValue();
+			dripleaf.setTilt(tilt);
+			entry.getKey().setBlockData(dripleaf);
+		}
 	}
 
 }

@@ -6,7 +6,6 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ch.njol.skript.Metrics;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 
@@ -15,7 +14,6 @@ public final class Khoryl extends JavaPlugin {
 	private static Khoryl instance;
 	private boolean runtimeErrors;
 	private SkriptAddon addon;
-	private Metrics metrics;
 
 	@Override
 	public void onEnable() {
@@ -28,7 +26,6 @@ public final class Khoryl extends JavaPlugin {
 				configFile.delete();
 		}
 		saveDefaultConfig();
-		metrics = new Metrics(this);
 		try {
 			addon = Skript.registerAddon(this)
 					.loadClasses("me.limeglass.khoryl", "elements")
@@ -50,10 +47,6 @@ public final class Khoryl extends JavaPlugin {
 
 	public boolean canRuntimeError() {
 		return runtimeErrors;
-	}
-
-	public Metrics getMetrics() {
-		return metrics;
 	}
 
 }

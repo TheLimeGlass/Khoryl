@@ -10,10 +10,10 @@ import me.limeglass.khoryl.lang.EntitySetEffect;
 @Name("Set Strider Shivering")
 @Description("Set if striders are to be shivering.")
 @Since("1.0.4")
-public class SetCharging extends EntitySetEffect<Strider> {
+public class SetStriderCharging extends EntitySetEffect<Strider> {
 
 	static {
-		register(SetCharging.class, "[strider] shivering");
+		register(SetStriderCharging.class, "[strider] shivering");
 	}
 
 	@Override

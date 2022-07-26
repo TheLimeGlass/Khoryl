@@ -1,5 +1,8 @@
 package me.limeglass.khoryl.elements.block.analoguepowerable;
 
+import java.util.Map.Entry;
+
+import org.bukkit.block.Block;
 import org.bukkit.block.data.AnaloguePowerable;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
@@ -46,26 +49,36 @@ public class ExprPower extends BlockDataPropertyExpression<AnaloguePowerable, In
 		int power = (int) delta[0];
 		switch (mode) {
 			case ADD:
-				for (AnaloguePowerable powerable : getBlockDatas(event)) {
+				for (Entry<Block, AnaloguePowerable> entry : getBlockDatasMap(event).entrySet()) {
+					AnaloguePowerable powerable = entry.getValue();
 					int exsting = grab(powerable);
 					powerable.setPower(exsting + power);
+					entry.getKey().setBlockData(powerable);
 				}
 				break;
 			case RESET:
 			case DELETE:
-				for (AnaloguePowerable powerable : getBlockDatas(event))
+				for (Entry<Block, AnaloguePowerable> entry : getBlockDatasMap(event).entrySet()) {
+					AnaloguePowerable powerable = entry.getValue();
 					powerable.setPower(1);
+					entry.getKey().setBlockData(powerable);
+				}
 				break;
 			case REMOVE_ALL:
 			case REMOVE:
-				for (AnaloguePowerable powerable : getBlockDatas(event)) {
+				for (Entry<Block, AnaloguePowerable> entry : getBlockDatasMap(event).entrySet()) {
+					AnaloguePowerable powerable = entry.getValue();
 					int exsting = grab(powerable);
 					powerable.setPower(exsting - power);
+					entry.getKey().setBlockData(powerable);
 				}
 				break;
 			case SET:
-				for (AnaloguePowerable powerable : getBlockDatas(event))
+				for (Entry<Block, AnaloguePowerable> entry : getBlockDatasMap(event).entrySet()) {
+					AnaloguePowerable powerable = entry.getValue();
 					powerable.setPower(power);
+					entry.getKey().setBlockData(powerable);
+				}
 				break;
 			default:
 				break;

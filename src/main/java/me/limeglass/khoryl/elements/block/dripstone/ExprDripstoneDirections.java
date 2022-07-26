@@ -64,8 +64,12 @@ public class ExprDripstoneDirections extends BlockDataExpression<PointedDripston
 		if (delta[0] == null)
 			return;
 		Direction direction = (Direction) delta[0];
-		for (Entry<Block, PointedDripstone> entry : getBlockDatasMap(event).entrySet())
-			entry.getValue().setVerticalDirection(toBlockFace(direction.getDirection(entry.getKey())));
+		for (Entry<Block, PointedDripstone> entry : getBlockDatasMap(event).entrySet()) {
+			PointedDripstone dropstone = entry.getValue();
+			Block block = entry.getKey();
+			dropstone.setVerticalDirection(toBlockFace(direction.getDirection(block)));
+			block.setBlockData(dropstone);
+		}
 	}
 
 	@Override

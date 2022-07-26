@@ -16,7 +16,7 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.coll.CollectionUtils;
 
 @Name("Remaining Air")
-@Description("Returns the amount of air that the living entity has remaining, in ticks.")
+@Description("Returns the amount of air that the living entity has remaining in ticks.")
 @Examples("set {_remaining} to the remaining air of target entity")
 @Since("1.0.0")
 public class ExprRemainingAir extends SimplePropertyExpression<LivingEntity, Timespan> {

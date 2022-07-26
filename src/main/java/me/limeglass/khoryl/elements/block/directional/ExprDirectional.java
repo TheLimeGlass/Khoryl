@@ -50,8 +50,12 @@ public class ExprDirectional extends BlockDataPropertyExpression<Directional, Di
 		if (delta[0] == null)
 			return;
 		Direction direction = (Direction) delta[0];
-		for (Entry<Block, Directional> entry : getBlockDatasMap(event).entrySet())
-			entry.getValue().setFacing(toBlockFace(direction.getDirection(entry.getKey())));
+		for (Entry<Block, Directional> entry : getBlockDatasMap(event).entrySet()) {
+			Directional directional = entry.getValue();
+			Block block = entry.getKey();
+			directional.setFacing(toBlockFace(direction.getDirection(block)));
+			block.setBlockData(directional);
+		}
 	}
 
 	private static BlockFace toBlockFace(Vector direction) {

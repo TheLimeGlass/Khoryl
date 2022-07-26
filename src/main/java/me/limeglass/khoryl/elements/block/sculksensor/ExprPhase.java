@@ -1,5 +1,8 @@
 package me.limeglass.khoryl.elements.block.sculksensor;
 
+import java.util.Map.Entry;
+
+import org.bukkit.block.Block;
 import org.bukkit.block.data.type.SculkSensor;
 import org.bukkit.block.data.type.SculkSensor.Phase;
 import org.bukkit.event.Event;
@@ -48,8 +51,11 @@ public class ExprPhase extends BlockDataPropertyExpression<SculkSensor, Phase> {
 		if (delta[0] == null)
 			return;
 		Phase phase = (Phase) delta[0];
-		for (SculkSensor sensor : getBlockDatas(event))
+		for (Entry<Block, SculkSensor> entry : getBlockDatasMap(event).entrySet()) {
+			SculkSensor sensor = entry.getValue();
 			sensor.setPhase(phase);
+			entry.getKey().setBlockData(sensor);
+		}
 	}
 
 }

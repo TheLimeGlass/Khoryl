@@ -20,8 +20,9 @@ public class SetCanSummon extends BlockDataSetEffect<SculkShrieker> {
 	}
 
 	@Override
-	protected void execute(SculkShrieker shrieker, boolean value) {
+	protected SculkShrieker updateBlockData(SculkShrieker shrieker, boolean value) {
 		shrieker.setCanSummon(value);
+		return shrieker;
 	}
 
 	@Override
