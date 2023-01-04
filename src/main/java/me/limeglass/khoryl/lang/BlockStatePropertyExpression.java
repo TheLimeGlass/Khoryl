@@ -12,13 +12,18 @@ import org.eclipse.jdt.annotation.Nullable;
 import com.google.common.reflect.TypeToken;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import ch.njol.skript.classes.Converter;
+import ch.njol.skript.expressions.base.PropertyExpression;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.log.ErrorQuality;
+import ch.njol.util.Kleenean;
 import me.limeglass.khoryl.Khoryl;
 
-public abstract class BlockStatePropertyExpression<S extends BlockState, V> extends SimplePropertyExpression<Block, V> implements BlockStateSyntax<S> {
+public abstract class BlockStatePropertyExpression<S extends BlockState, V> extends PropertyExpression<Block, V> implements BlockStateSyntax<S>, Converter<Block, V> {
 
 	private final boolean printErrors;
+	protected Event event;
 
 	public BlockStatePropertyExpression() {
 		printErrors = Khoryl.getInstance().canRuntimeError();
@@ -28,18 +33,19 @@ public abstract class BlockStatePropertyExpression<S extends BlockState, V> exte
 		register(expression, returnType, property, "blocks");
 	}
 
-	@SuppressWarnings({"serial", "unchecked"})
 	@Override
-	public Class<? extends V> getReturnType() {
-		return (Class<? extends V>) new TypeToken<V>(getClass()){}.getRawType();
+	@SuppressWarnings("unchecked")
+	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+		setExpr((Expression<Block>) exprs[0]);
+		return true;
 	}
 
 	@Nullable
 	protected abstract V grab(S state);
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@Nullable
+	@SuppressWarnings("unchecked")
 	public final V convert(Block block) {
 		if (block == null)
 			return null;
@@ -53,6 +59,12 @@ public abstract class BlockStatePropertyExpression<S extends BlockState, V> exte
 		return grab((S) state);
 	}
 
+	@Override
+	protected V[] get(Event event, Block[] source) {
+		this.event = event;
+		return super.get(source, this);
+	}
+
 	@SuppressWarnings("unchecked")
 	protected Set<S> getBlockStates(Event event) {
 		return Arrays.stream(getExpr().getArray(event))
@@ -60,6 +72,19 @@ public abstract class BlockStatePropertyExpression<S extends BlockState, V> exte
 				.filter(state -> accepts(state))
 				.map(state -> (S)state)
 				.collect(Collectors.toSet());
+	}
+
+	@Override
+	@SuppressWarnings({"serial", "unchecked"})
+	public Class<? extends V> getReturnType() {
+		return (Class<? extends V>) new TypeToken<V>(getClass()){}.getRawType();
+	}
+
+	protected abstract String getPropertyName();
+
+	@Override
+	public String toString(final @Nullable Event e, final boolean debug) {
+		return "the " + getPropertyName() + " of " + getExpr().toString(e, debug);
 	}
 
 }

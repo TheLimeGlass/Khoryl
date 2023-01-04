@@ -27,7 +27,7 @@ public class EvtCombustByBlock extends SkriptEvent {
 
 	static {
 		Skript.registerEvent("combust by block", EvtCombustByBlock.class, EntityCombustByBlockEvent.class, "entit(y|ies) combust[ing] (from|by) (%-itemtypes/blockdatas%|block)");
-		EventValues.registerEventValue(EntityCombustByBlockEvent.class, Entity.class, new Getter<>() {
+		EventValues.registerEventValue(EntityCombustByBlockEvent.class, Entity.class, new Getter<Entity, EntityCombustByBlockEvent>() {
 			@Override
 			public @Nullable Entity get(EntityCombustByBlockEvent event) {
 				return event.getEntity();
@@ -49,7 +49,7 @@ public class EvtCombustByBlock extends SkriptEvent {
 		if (types == null)
 			return true;
 		EntityCombustByBlockEvent event = (EntityCombustByBlockEvent) e;
-		return types.check(event, new Checker<>() {
+		return types.check(event, new Checker<Object>() {
 			@Override
 			public boolean check(Object object) {
 				Block combuster = event.getCombuster();

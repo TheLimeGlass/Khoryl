@@ -16,15 +16,15 @@ public abstract class SetEffect<T> extends Effect {
 
 	private Expression<Boolean> value;
 	private Expression<T> expression;
-	private boolean make;
+	protected boolean make;
 
 	public static void register(Class<? extends SetEffect<?>> effect, String property, String type) {
 		Skript.registerEffect(effect, "set " + property + " of %" + type + "% to %boolean%",
 				"make %" + type + "% " + property);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		if (exprs.length != 2)
 			Skript.error("There was not two expressions in the SetEffect class " + getClass().getName() + " exprs: " + Arrays.toString(exprs));
@@ -40,6 +40,14 @@ public abstract class SetEffect<T> extends Effect {
 
 	protected Expression<T> getExpression() {
 		return expression;
+	}
+
+	protected void setExpression(Expression<T> expression) {
+		this.expression = expression;
+	}
+
+	protected void setValueExpression(Expression<Boolean> value) {
+		this.value = value;
 	}
 
 	protected abstract String getPropertyName();

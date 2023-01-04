@@ -18,19 +18,19 @@ public class EvtSculkClicking extends SkriptEvent {
 
 	static {
 		Skript.registerEvent("SCULK_SENSOR_TENDRILS_CLICKING", EvtSculkClicking.class, GenericGameEvent.class, "sculk [sensor] [tendrils] clicking");
-		EventValues.registerEventValue(GenericGameEvent.class, Location.class, new Getter<>() {
+		EventValues.registerEventValue(GenericGameEvent.class, Location.class, new Getter<Location, GenericGameEvent>() {
 			@Override
 			public @Nullable Location get(GenericGameEvent event) {
 				return event.getLocation();
 			}
 		}, 0);
-		EventValues.registerEventValue(GenericGameEvent.class, Integer.class, new Getter<>() {
+		EventValues.registerEventValue(GenericGameEvent.class, Integer.class, new Getter<Integer, GenericGameEvent>() {
 			@Override
 			public @Nullable Integer get(GenericGameEvent event) {
 				return event.getRadius();
 			}
 		}, 0);
-		EventValues.registerEventValue(GenericGameEvent.class, Entity.class, new Getter<>() {
+		EventValues.registerEventValue(GenericGameEvent.class, Entity.class, new Getter<Entity, GenericGameEvent>() {
 			@Override
 			public @Nullable Entity get(GenericGameEvent event) {
 				return event.getEntity();

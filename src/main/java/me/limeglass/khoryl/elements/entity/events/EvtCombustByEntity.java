@@ -25,7 +25,7 @@ public class EvtCombustByEntity extends SkriptEvent {
 
 	static {
 		Skript.registerEvent("combust by entity", EvtCombustByEntity.class, EntityCombustByEntityEvent.class, "entit(y|ies) combust[ing] (from|by) (%-entitydatas%|[another] entity)");
-		EventValues.registerEventValue(EntityCombustByEntityEvent.class, Entity.class, new Getter<>() {
+		EventValues.registerEventValue(EntityCombustByEntityEvent.class, Entity.class, new Getter<Entity, EntityCombustByEntityEvent>() {
 			@Override
 			public @Nullable Entity get(EntityCombustByEntityEvent event) {
 				return event.getEntity();
@@ -47,7 +47,7 @@ public class EvtCombustByEntity extends SkriptEvent {
 		if (datas == null)
 			return true;
 		EntityCombustByEntityEvent event = (EntityCombustByEntityEvent) e;
-		return datas.check(event, new Checker<>() {
+		return datas.check(event, new Checker<EntityData<?>>() {
 			@Override
 			public boolean check(EntityData<?> data) {
 				return data.isInstance(event.getCombuster());

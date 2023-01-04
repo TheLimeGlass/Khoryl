@@ -10,6 +10,11 @@ plugins {
 compileJava.options.encoding = 'Cp1252'
 compileTestJava.options.encoding = 'Cp1252'
 
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
 repositories {
 	mavenCentral()
 

@@ -10,7 +10,7 @@ import ch.njol.skript.util.Version;
 import me.limeglass.khoryl.lang.EntitySetEffect;
 
 @Name("Axolotl Playing Dead")
-@Description("Set the playing dead state of a axolotl.")
+@Description("Set the playing dead state of a axolotl. The entity must be underwater and damaged.")
 @Since("1.0.5")
 public class SetPlayingDead extends EntitySetEffect<Axolotl> {
 
