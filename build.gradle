@@ -67,7 +67,5 @@ processResources {
 shadowJar {
 	configurations = [project.configurations.shadow]
 	archiveVersion = project.property("version")
-	archiveBaseName = project.name
-	classifier = ''
 	minimize()
 }
