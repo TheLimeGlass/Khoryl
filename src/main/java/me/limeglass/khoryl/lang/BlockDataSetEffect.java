@@ -1,8 +1,9 @@
 package me.limeglass.khoryl.lang;
 
+import java.util.function.BiConsumer;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.event.Event;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.log.ErrorQuality;
@@ -24,18 +25,17 @@ public abstract class BlockDataSetEffect<S extends BlockData> extends SetEffect<
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void execute(Event event) {
-		boolean value = getBoolean(event);
-		for (Block block : getExpression().getArray(event)) {
+	protected BiConsumer<Block, Boolean> apply() {
+		return (block, value) -> {
 			BlockData data = block.getBlockData();
 			if (!accepts(data)) {
 				if (printErrors)
 					Skript.error("A block data was not of type " + getCastingBlockDataClass().getName()
 							+ " in property expression '" + getPropertyName() + "'", ErrorQuality.SEMANTIC_ERROR);
-				continue;
+				return;
 			}
 			block.setBlockData(updateBlockData((S) data, value));
-		}
+		};
 	}
 
 }

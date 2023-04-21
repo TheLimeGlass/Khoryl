@@ -1,7 +1,8 @@
 package me.limeglass.khoryl.elements.effects;
 
+import java.util.function.BiConsumer;
+
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
@@ -25,8 +26,8 @@ public class SetPickupItems extends SetEffect<LivingEntity> {
 	}
 
 	@Override
-	protected void execute(Event event) {
-		apply(event, (entity, pickup) -> entity.setCanPickupItems(pickup));
+	protected BiConsumer<LivingEntity, Boolean> apply() {
+		return (entity, value) -> entity.setCanPickupItems(value);
 	}
 
 }

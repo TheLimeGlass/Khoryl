@@ -1,6 +1,7 @@
 package me.limeglass.khoryl.elements.entity.merchant.recipe;
 
-import org.bukkit.event.Event;
+import java.util.function.BiConsumer;
+
 import org.bukkit.inventory.MerchantRecipe;
 
 import ch.njol.skript.Skript;
@@ -26,8 +27,8 @@ public class SetRecipeReward extends SetEffect<MerchantRecipe> {
 	}
 
 	@Override
-	protected void execute(Event event) {
-		apply(event, (recipe, boo) -> recipe.setExperienceReward(boo));
+	protected BiConsumer<MerchantRecipe, Boolean> apply() {
+		return (recipe, value) -> recipe.setExperienceReward(value);
 	}
 
 }

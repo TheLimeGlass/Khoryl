@@ -10,9 +10,8 @@ import org.bukkit.inventory.LlamaInventory;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.eclipse.jdt.annotation.Nullable;
-
-import ch.njol.skript.classes.Converter;
-import ch.njol.skript.registrations.Converters;
+import org.skriptlang.skript.lang.converter.Converter;
+import org.skriptlang.skript.lang.converter.Converters;
 
 public class DefaultConverters {
 
@@ -24,6 +23,7 @@ public class DefaultConverters {
 				return villager.getInventory();
 			}
 		});
+
 		Converters.registerConverter(Llama.class, LlamaInventory.class, new Converter<Llama, LlamaInventory>() {
 			@Override
 			@Nullable
@@ -31,6 +31,7 @@ public class DefaultConverters {
 				return llama.getInventory();
 			}
 		});
+
 		Converters.registerConverter(ItemStack.class, BlockState.class, new Converter<ItemStack, BlockState>() {
 			@Override
 			@Nullable
@@ -44,6 +45,7 @@ public class DefaultConverters {
 				return blockStateMeta.getBlockState();
 			}
 		});
+
 		Converters.registerConverter(BlockState.class, Block.class, new Converter<BlockState, Block>() {
 			@Override
 			@Nullable
@@ -52,4 +54,5 @@ public class DefaultConverters {
 			}
 		});
 	}
+
 }

@@ -1,8 +1,5 @@
 package me.limeglass.khoryl.elements.block.chiseledbookshelf;
 
-import java.util.Arrays;
-
-import org.bukkit.block.Block;
 import org.bukkit.block.data.type.ChiseledBookshelf;
 
 import ch.njol.skript.Skript;
@@ -15,36 +12,34 @@ import ch.njol.skript.util.Version;
 import ch.njol.util.Kleenean;
 import me.limeglass.khoryl.lang.BlockDataSetEffect;
 
-@Name("End Portal Frame Set Eye")
-@Description("Set if an ender portal frame has an eye of ender in it.")
-@Since("1.0.6")
+@Name("Bookshelf Occupied Slots")
+@Description("Set if bookshelfs slots are occupied by books or not.")
+@Since("1.1.0")
 public class SetOccupiedSlots extends BlockDataSetEffect<ChiseledBookshelf> {
 
 	static {
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
-			register(SetOccupiedSlots.class, "slot[s] %numbers%");
+		if (Skript.isRunningMinecraft(new Version(1, 19)))
+			register(SetOccupiedSlots.class, "bookshelf slot[s] %numbers%");
 	}
+
+	private Expression<Number> slots;
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		if (exprs.length != 2)
-			Skript.error("There was not two expressions in the SetEffect class " + getClass().getName() + " exprs: " + Arrays.toString(exprs));
-		make = matchedPattern == 1;
-		setExpression((Expression<Block>) exprs[0]);
-		setValueExpression((Expression<Boolean>) exprs[1]);
-		return true;
+		slots = (Expression<Number>) exprs[matchedPattern ^ 0];
+		return super.init(exprs, matchedPattern, isDelayed, parseResult);
 	}
 
 	@Override
 	protected ChiseledBookshelf updateBlockData(ChiseledBookshelf bookshelf, boolean value) {
-		bookshelf.setSlotOccupied(0, value);
+		slots.stream(event).map(Number::intValue).forEach(slot -> bookshelf.setSlotOccupied(slot, value));
 		return bookshelf;
 	}
 
 	@Override
 	protected String getPropertyName() {
-		return "has eye of ender";
+		return "bookshelf slots " + slots.toString(event, printErrors);
 	}
 
 }

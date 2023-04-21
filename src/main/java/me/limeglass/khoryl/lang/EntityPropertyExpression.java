@@ -12,6 +12,7 @@ import com.google.common.reflect.TypeToken;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import ch.njol.skript.lang.Expression;
 import ch.njol.skript.log.ErrorQuality;
 import me.limeglass.khoryl.Khoryl;
 
@@ -21,6 +22,14 @@ public abstract class EntityPropertyExpression<F extends Entity, P extends Entit
 
 	public EntityPropertyExpression() {
 		printErrors = Khoryl.getInstance().canRuntimeError();
+	}
+
+	public static <T> void register(Class<? extends Expression<T>> c, Class<T> type, String property, String t) {
+		register(c, type, property, t);
+	}
+
+	public static <T> void register(Class<? extends Expression<T>> c, Class<T> type, String property) {
+		register(c, type, property, "entities");
 	}
 
 	@SuppressWarnings({"serial", "unchecked"})

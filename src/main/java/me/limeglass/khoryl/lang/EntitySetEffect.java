@@ -1,5 +1,7 @@
 package me.limeglass.khoryl.lang;
 
+import java.util.function.BiConsumer;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
@@ -22,11 +24,6 @@ public abstract class EntitySetEffect<E extends Entity> extends SetEffect<Entity
 
 	public abstract void apply(E entity, boolean value);
 
-	@Override
-	protected void execute(Event event) {
-		apply(event, (entity, boo) -> apply(convert(entity), boo));
-	}
-
 	@SuppressWarnings("unchecked")
 	@Nullable
 	public final E convert(Entity entity) {
@@ -39,6 +36,11 @@ public abstract class EntitySetEffect<E extends Entity> extends SetEffect<Entity
 			return null;
 		}
 		return (E) entity;
+	}
+
+	@Override
+	protected BiConsumer<Entity, Boolean> apply() {
+		return (entity, boo) -> apply(convert(entity), boo);
 	}
 
 }
