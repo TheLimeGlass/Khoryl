@@ -52,7 +52,7 @@ dependencies {
 		transitive = false
 	}
 
-	shadow (group: 'org.json', name: 'json', version: '20230227')
+	shadow (group: 'org.json', name: 'json', version: '20230618')
 
 }
 
