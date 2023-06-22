@@ -10,19 +10,20 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
+import me.limeglass.khoryl.lang.BlockStateExpression;
 
 @Name("Campfire Item")
 @Description("Collect the item on a slot of the campfires.")
 @Since("1.0.7")
-public class ExprCampfireItem extends BlockStatePropertyExpression<Campfire, ItemStack> {
+public class ExprCampfireItem extends BlockStateExpression<Campfire, ItemStack> {
 
 	static {
-		register(ExprCampfireItem.class, ItemStack.class, "[camp[ ]fire] item (of|(i|o)n) [slot] %number%");
+		SimplePropertyExpression.register(ExprCampfireItem.class, ItemStack.class, "[camp[ ]fire] item (of|(i|o)n) [slot] %number%", "blocks");
 	}
 
 	private Expression<Number> slot;
@@ -30,7 +31,7 @@ public class ExprCampfireItem extends BlockStatePropertyExpression<Campfire, Ite
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		setExpr((Expression<Block>) exprs[matchedPattern ^ 1]);
+		setBlockExpression((Expression<Block>) exprs[matchedPattern ^ 1]);
 		slot = (Expression<Number>) exprs[matchedPattern];
 		return true;
 	}
@@ -45,7 +46,7 @@ public class ExprCampfireItem extends BlockStatePropertyExpression<Campfire, Ite
 	}
 
 	@Override
-	protected String getPropertyName() {
+	public String toString(Event event, boolean debug) {
 		return "camp fire on slot " + slot.toString(event, false);
 	}
 

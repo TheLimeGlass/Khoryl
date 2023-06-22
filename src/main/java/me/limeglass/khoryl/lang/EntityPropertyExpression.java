@@ -25,11 +25,11 @@ public abstract class EntityPropertyExpression<F extends Entity, P extends Entit
 	}
 
 	public static <T> void register(Class<? extends Expression<T>> c, Class<T> type, String property, String t) {
-		register(c, type, property, t);
+		SimplePropertyExpression.register(c, type, property, t);
 	}
 
 	public static <T> void register(Class<? extends Expression<T>> c, Class<T> type, String property) {
-		register(c, type, property, "entities");
+		SimplePropertyExpression.register(c, type, property, "entities");
 	}
 
 	@SuppressWarnings({"serial", "unchecked"})

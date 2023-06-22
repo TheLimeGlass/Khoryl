@@ -26,11 +26,11 @@ public abstract class BlockDataPropertyExpression<S extends BlockData, V> extend
 	}
 
 	public static <S extends BlockData, V> void register(Class<? extends BlockDataPropertyExpression<S, V>> expression, Class<V> returnType, String property) {
-		register(expression, returnType, property, "blocks");
+		SimplePropertyExpression.register(expression, returnType, property, "blocks");
 	}
 
-	@SuppressWarnings({"serial", "unchecked"})
 	@Override
+	@SuppressWarnings({"serial", "unchecked"})
 	public Class<? extends V> getReturnType() {
 		return (Class<? extends V>) new TypeToken<V>(getClass()){}.getRawType();
 	}
@@ -38,9 +38,9 @@ public abstract class BlockDataPropertyExpression<S extends BlockData, V> extend
 	@Nullable
 	protected abstract V grab(S state);
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@Nullable
+	@SuppressWarnings("unchecked")
 	public final V convert(Block block) {
 		if (block == null)
 			return null;

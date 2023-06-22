@@ -9,20 +9,21 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
+import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
+import me.limeglass.khoryl.lang.BlockStateExpression;
 
 @Name("Campfire Cook Time")
 @Description("Collect the total or current cooking time for a slot on the campfires. Not including the word 'total' is the current cooking time.")
 @Since("1.0.7")
-public class ExprCampfireCookTime extends BlockStatePropertyExpression<Campfire, Timespan> {
+public class ExprCampfireCookTime extends BlockStateExpression<Campfire, Timespan> {
 
 	static {
-		register(ExprCampfireCookTime.class, Timespan.class, "[camp[ ]fire] [:total] cook[ing] time (of|(i|o)n) [slot] %number%");
+		SimplePropertyExpression.register(ExprCampfireCookTime.class, Timespan.class, "[camp[ ]fire] [:total] cook[ing] time (of|(i|o)n) [slot] %number%", "blocks");
 	}
 
 	private Expression<Number> slot;
@@ -31,7 +32,7 @@ public class ExprCampfireCookTime extends BlockStatePropertyExpression<Campfire,
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		setExpr((Expression<Block>) exprs[matchedPattern ^ 1]);
+		setBlockExpression((Expression<Block>) exprs[matchedPattern ^ 1]);
 		slot = (Expression<Number>) exprs[matchedPattern];
 		total = parseResult.hasTag("total");
 		return true;
@@ -49,7 +50,7 @@ public class ExprCampfireCookTime extends BlockStatePropertyExpression<Campfire,
 	}
 
 	@Override
-	protected String getPropertyName() {
+	public String toString(Event event, boolean debug) {
 		return (total ? "total " : "") + "cook time on slot " + slot.toString(event, false);
 	}
 

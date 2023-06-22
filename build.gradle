@@ -52,7 +52,9 @@ dependencies {
 		transitive = false
 	}
 
-	shadow (group: 'org.json', name: 'json', version: '20230227')
+	// bStats
+	shadow group: 'org.bstats', name: 'bstats-bukkit', version: '3.0.2'
+	//shadow (group: 'org.json', name: 'json', version: '20230227')
 
 }
 
@@ -65,6 +67,11 @@ processResources {
 }
 
 shadowJar {
+	dependencies {
+		include(dependency('org.bstats:bstats-bukkit'))
+		include(dependency('org.bstats:bstats-base'))
+	}
+	relocate 'org.bstats', 'me.limeglass.khoryl.bstats'
 	configurations = [project.configurations.shadow]
 	archiveVersion = project.property("version")
 	minimize()

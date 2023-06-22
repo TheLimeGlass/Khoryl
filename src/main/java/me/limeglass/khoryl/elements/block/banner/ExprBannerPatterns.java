@@ -47,8 +47,14 @@ public class ExprBannerPatterns extends BlockStateExpression<Banner, Pattern> {
 
 	@Override
 	@Nullable
-	protected Pattern[] grab(Banner banner) {
-		return banner.getPatterns().stream().toArray(Pattern[]::new);
+	protected Pattern[] get(Event event) {
+		this.event = event;
+		return (Pattern[]) getBlockStates(event).stream().flatMap(banner -> banner.getPatterns().stream()).toArray();
+	}
+
+	@Override
+	protected @Nullable Pattern grab(Banner state) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Nullable

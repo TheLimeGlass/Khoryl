@@ -3,6 +3,8 @@ package me.limeglass.khoryl;
 import java.io.File;
 import java.io.IOException;
 
+import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,6 +36,8 @@ public final class Khoryl extends JavaPlugin {
 			e.printStackTrace();
 		}
 		runtimeErrors = getConfig().getBoolean("console-runtime-errors", true);
+		Metrics metrics = new Metrics(this, 5676);
+		metrics.addCustomChart(new SimplePie("runtime_errors", () -> runtimeErrors + ""));
 		Bukkit.getConsoleSender().sendMessage("[Khoryl] Khoryl has been enabled!");
 	}
 

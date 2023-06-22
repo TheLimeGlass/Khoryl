@@ -25,12 +25,7 @@ public class ExprBeaconAffectedEntities extends BlockStateExpression<Beacon, Liv
 	}
 
 	@Override
-	public boolean isSingle() {
-		return false;
-	}
-
 	@SuppressWarnings("unchecked")
-	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		setBlockExpression((Expression<Block>) exprs[0]);
 		return true;
@@ -38,8 +33,19 @@ public class ExprBeaconAffectedEntities extends BlockStateExpression<Beacon, Liv
 
 	@Override
 	@Nullable
-	protected LivingEntity[] grab(Beacon beacon) {
-		return beacon.getEntitiesInRange().stream().toArray(LivingEntity[]::new);
+	protected LivingEntity[] get(Event event) {
+		this.event = event;
+		return (LivingEntity[]) getBlockStates(event).stream().flatMap(beacon -> beacon.getEntitiesInRange().stream()).toArray();
+	}
+
+	@Override
+	protected @Nullable LivingEntity grab(Beacon state) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isSingle() {
+		return false;
 	}
 
 	@Override
