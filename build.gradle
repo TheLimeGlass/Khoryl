@@ -28,10 +28,6 @@ repositories {
 		url "https://oss.sonatype.org/content/repositories/snapshots/"
 	}
 
-	maven {
-		url 'https://mvnrepository.com/artifact/org.json/json'
-	}
-
 	// Skript
 	maven {
 		url 'https://repo.skriptlang.org/releases'
@@ -45,15 +41,15 @@ dependencies {
 	implementation (group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.annotation', version: '2.2.700')
 
 	//Spigot/Bukkit
-	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.19.4-R0.1-SNAPSHOT')
+	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.20.2-R0.1-SNAPSHOT')
 
 	//Skript
-	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.7.0-beta3') {
+	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.7.0') {
 		transitive = false
 	}
 
 	// bStats
-	shadow group: 'org.bstats', name: 'bstats-bukkit', version: '3.0.2'
+	shadow (group: 'org.bstats', name: 'bstats-bukkit', version: '3.0.2')
 
 }
 

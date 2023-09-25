@@ -41,7 +41,7 @@ public class ExprAnger extends EntityExpression<LivingEntity, Warden, Integer> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		setEntities((Expression<LivingEntity>) exprs[0]);
+		setEntitiesExpression((Expression<LivingEntity>) exprs[0]);
 		targets = (Expression<Entity>) exprs[1];
 		return true;
 	}

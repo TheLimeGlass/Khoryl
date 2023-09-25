@@ -22,12 +22,13 @@ public abstract class EntityExpression<F extends Entity, P extends Entity, T> ex
 
 	private final boolean printErrors;
 	private Expression<F> entities;
+	protected Event event;
 
 	public EntityExpression() {
 		printErrors = Khoryl.getInstance().canRuntimeError();
 	}
 
-	protected void setEntities(Expression<F> entities) {
+	protected void setEntitiesExpression(Expression<F> entities) {
 		this.entities = entities;
 	}
 
@@ -41,9 +42,15 @@ public abstract class EntityExpression<F extends Entity, P extends Entity, T> ex
 		return (Class<? extends T>) new TypeToken<T>(getClass()){}.getRawType();
 	}
 
+	@Override
+	public boolean isSingle() {
+		return entities.isSingle();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected @Nullable T[] get(Event event) {
+		this.event = event;
 		Validate.notNull(entities, "The entities expression cannot be null, use setEntities(entities)");
 		return (T[]) Arrays.stream(entities.getArray(event))
 				.flatMap(entity -> {
