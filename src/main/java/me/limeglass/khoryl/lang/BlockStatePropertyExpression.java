@@ -8,11 +8,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
-import org.skriptlang.skript.lang.converter.Converter;
 
 import com.google.common.reflect.TypeToken;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.classes.Converter;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.log.ErrorQuality;
 import me.limeglass.khoryl.Khoryl;

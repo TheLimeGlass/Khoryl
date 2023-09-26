@@ -15,7 +15,7 @@ public class CondCamelIsDashing extends EntityPropertyCondition<Camel> {
 
 	static {
 		if (Skript.classExists("org.bukkit.entity.Camel"))
-			register(CondCamelIsDashing.class, PropertyType.HAVE, "dashing", "livingentities");
+			register(CondCamelIsDashing.class, "dashing", "livingentities");
 	}
 
 	@Override

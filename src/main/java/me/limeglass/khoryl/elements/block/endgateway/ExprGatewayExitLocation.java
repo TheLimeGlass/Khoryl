@@ -18,7 +18,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyExpression;
 public class ExprGatewayExitLocation extends BlockStatePropertyExpression<EndGateway, Location> {
 
 	static {
-		register(ExprGatewayExitLocation.class, Location.class, "[end] [gateway] exit locaiton");
+		register(ExprGatewayExitLocation.class, Location.class, "[end] [gateway] exit location");
 	}
 
 	@Override

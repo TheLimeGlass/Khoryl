@@ -15,7 +15,7 @@ public class CondCanBreathUnderwater extends PropertyCondition<LivingEntity> {
 
 	static {
 		if (!Skript.methodExists(LivingEntity.class, "canBreatheUnderwater"))
-			register(CondCanBreathUnderwater.class, "can breathe under[( | the )]water", "livingentities");
+			register(CondCanBreathUnderwater.class, PropertyType.CAN, "breathe under[ [the ]]water", "livingentities");
 	}
 
 	@Override

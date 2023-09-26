@@ -13,7 +13,7 @@ import me.limeglass.khoryl.lang.BlockStatePropertyCondition;
 public class ConIsExactTeleport extends BlockStatePropertyCondition<EndGateway> {
 
 	static {
-		register(ConIsExactTeleport.class, "exact teleport [location]");
+		register(ConIsExactTeleport.class, "[an] exact teleport [location]");
 	}
 
 	@Override

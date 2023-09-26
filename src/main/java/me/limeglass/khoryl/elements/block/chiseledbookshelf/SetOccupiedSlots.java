@@ -19,7 +19,7 @@ public class SetOccupiedSlots extends BlockDataSetEffect<ChiseledBookshelf> {
 
 	static {
 		if (Skript.isRunningMinecraft(new Version(1, 19)))
-			register(SetOccupiedSlots.class, "bookshelf slot[s] %numbers%");
+			register(SetOccupiedSlots.class, "[displaying|occupied] bookshelf slot[s] %numbers%");
 	}
 
 	private Expression<Number> slots;

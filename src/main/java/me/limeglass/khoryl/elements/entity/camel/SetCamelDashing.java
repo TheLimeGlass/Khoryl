@@ -15,7 +15,7 @@ public class SetCamelDashing extends EntitySetEffect<Camel> {
 
 	static {
 		if (Skript.classExists("org.bukkit.entity.Camel"))
-			register(SetCamelDashing.class, "carrying chest");
+			register(SetCamelDashing.class, "dashing");
 	}
 
 	@Override

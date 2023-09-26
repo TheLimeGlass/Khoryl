@@ -10,8 +10,9 @@ import org.bukkit.inventory.LlamaInventory;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.eclipse.jdt.annotation.Nullable;
-import org.skriptlang.skript.lang.converter.Converter;
-import org.skriptlang.skript.lang.converter.Converters;
+
+import ch.njol.skript.classes.Converter;
+import ch.njol.skript.registrations.Converters;
 
 public class DefaultConverters {
 
