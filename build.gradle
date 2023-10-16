@@ -7,8 +7,8 @@ plugins {
 	id 'java'
 }
 
-compileJava.options.encoding = 'Cp1252'
-compileTestJava.options.encoding = 'Cp1252'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 compileJava {
     sourceCompatibility = '1.8'
