@@ -1,6 +1,7 @@
 package me.limeglass.khoryl.elements.entity.merchant;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.bukkit.entity.AbstractVillager;
 import org.bukkit.entity.LivingEntity;
@@ -8,6 +9,8 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
 import org.eclipse.jdt.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
@@ -43,8 +46,8 @@ public class ExprMerchantRecipes extends SimpleExpression<MerchantRecipe> implem
 		return MerchantRecipe.class;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		villagers = (Expression<LivingEntity>) exprs[0];
 		return true;
@@ -69,7 +72,7 @@ public class ExprMerchantRecipes extends SimpleExpression<MerchantRecipe> implem
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
-		return CollectionUtils.array(MerchantRecipe.class, MerchantRecipe[].class);
+		return CollectionUtils.array(MerchantRecipe[].class);
 	}
 
 	@Override
@@ -79,25 +82,27 @@ public class ExprMerchantRecipes extends SimpleExpression<MerchantRecipe> implem
 		switch (mode) {
 			case SET:
 				for (AbstractVillager villager : getEntities(villagers, event))
-					((Merchant)villager).getRecipes().clear();
+					((Merchant)villager).setRecipes(Lists.newArrayList());
 			case ADD:
-				for (MerchantRecipe recipe : (MerchantRecipe[]) delta) {
-					for (AbstractVillager villager : getEntities(villagers, event)) {
-						((Merchant)villager).getRecipes().add(recipe);
-					}
+				for (AbstractVillager villager : getEntities(villagers, event)) {
+					List<MerchantRecipe> recipes = Lists.newArrayList(((Merchant)villager).getRecipes());
+					for (MerchantRecipe recipe : (MerchantRecipe[]) delta)
+						recipes.add(recipe);
+					((Merchant)villager).setRecipes(recipes);
 				}
 				break;
 			case RESET:
 			case DELETE:
 				for (AbstractVillager villager : getEntities(villagers, event))
-					((Merchant)villager).getRecipes().clear();
+					((Merchant)villager).setRecipes(Lists.newArrayList());
 				break;
 			case REMOVE_ALL:
 			case REMOVE:
-				for (MerchantRecipe recipe : (MerchantRecipe[]) delta) {
-					for (AbstractVillager villager : getEntities(villagers, event)) {
-						((Merchant)villager).getRecipes().remove(recipe);
-					}
+				for (AbstractVillager villager : getEntities(villagers, event)) {
+					List<MerchantRecipe> recipes = Lists.newArrayList(((Merchant)villager).getRecipes());
+					for (MerchantRecipe recipe : (MerchantRecipe[]) delta)
+						recipes.remove(recipe);
+					((Merchant)villager).setRecipes(recipes);
 				}
 				break;
 			default:

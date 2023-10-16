@@ -8,6 +8,8 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.MerchantRecipe;
 import org.eclipse.jdt.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
@@ -16,6 +18,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import me.limeglass.khoryl.Khoryl;
 import me.limeglass.khoryl.lang.EntitySyntax;
 
 @Name("Merchant Recipes")
@@ -24,7 +27,7 @@ import me.limeglass.khoryl.lang.EntitySyntax;
 public class EffMerchantMerchantRecipe extends Effect implements EntitySyntax<AbstractVillager> {
 
 	static {
-		Skript.registerEffect(EffMerchantMerchantRecipe.class, "(1¦set|2¦remove) [merchant] recipe at [index] %number% [to %merchantrecipe%] (for|of) [villager] %livingentity%");
+		Skript.registerEffect(EffMerchantMerchantRecipe.class, "(1Â¦set|2Â¦remove) [merchant] recipe at [index] %number% [to %merchantrecipe%] (for|of) [villager] %livingentity%");
 	}
 
 	private Expression<MerchantRecipe> recipe;
@@ -55,13 +58,23 @@ public class EffMerchantMerchantRecipe extends Effect implements EntitySyntax<Ab
 			MerchantRecipe merchantRecipe = recipe.getSingle(event);
 			if (merchantRecipe == null)
 				return;
-			villagerEntity.setRecipe(number.intValue(), merchantRecipe);
+			if (villagerEntity.getRecipeCount() == 0) {
+				villagerEntity.setRecipes(Lists.newArrayList(merchantRecipe));
+			} else {
+				try {
+					villagerEntity.setRecipe(number.intValue(), merchantRecipe);
+				} catch (IndexOutOfBoundsException exception) {
+					if (Khoryl.getInstance().canRuntimeError())
+						Skript.error("The index of " + number + " is out of bounds on a villager. Consider adding the recipe.");
+				}
+			}
 			return;
 		}
-		List<MerchantRecipe> recipes = villagerEntity.getRecipes();
+		List<MerchantRecipe> recipes = Lists.newArrayList(villagerEntity.getRecipes());
 		if (recipes.size() >= number.intValue() || number.intValue() < 0)
 			return;
 		recipes.remove(number.intValue());
+		villagerEntity.setRecipes(recipes);
 	}
 
 	@Override

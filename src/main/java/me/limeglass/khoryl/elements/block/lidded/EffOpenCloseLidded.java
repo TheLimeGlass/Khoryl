@@ -23,7 +23,7 @@ public class EffOpenCloseLidded extends Effect {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 16)))
-			Skript.registerEffect(EffOpenCloseLidded.class, "(1¦open|2¦close) [lidded] blocks %blocks%");
+			Skript.registerEffect(EffOpenCloseLidded.class, "(1Â¦open|2Â¦close) [lidded] blocks %blocks%");
 	}
 
 	private Expression<Block> blocks;

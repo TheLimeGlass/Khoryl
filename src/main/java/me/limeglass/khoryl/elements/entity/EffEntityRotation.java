@@ -23,7 +23,7 @@ public class EffEntityRotation extends Effect {
 
 	static {
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 14)))
-			Skript.registerEffect(EffEntityRotation.class, "set (1¦yaw|2¦pitch) of %entities% to %number%",
+			Skript.registerEffect(EffEntityRotation.class, "set (1Â¦yaw|2Â¦pitch) of %entities% to %number%",
 					"set (yaw and pitch|rotation) of %entities% to %number% and %number%",
 					"set yaw of %entities% to %number% and pitch to %number%");
 	}
