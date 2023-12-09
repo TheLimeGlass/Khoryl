@@ -1,5 +1,7 @@
 package me.limeglass.khoryl.elements.item.bundle;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -41,14 +43,19 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
-		return CollectionUtils.array(ItemStack[].class);
+		return CollectionUtils.array(ItemType[].class, ItemStack[].class);
 	}
 
 	@Override
 	public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
 		if (delta == null)
 			return;
-		List<ItemStack> items = Lists.newArrayList((ItemStack[]) delta);
+		List<ItemStack> items = new ArrayList<ItemStack>();
+		if (delta instanceof ItemStack[]) {
+			items.addAll(Lists.newArrayList((ItemStack[]) delta));
+		} else {
+			items.addAll(Arrays.stream((ItemType[]) delta).map(ItemType::getRandom).toList());
+		}
 		switch (mode) {
 			case ADD:
 				for (Entry<ItemType, BundleMeta> entry : getMetasMap(event).entrySet()) {
@@ -69,7 +76,7 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 			case REMOVE_ALL:
 				for (Entry<ItemType, BundleMeta> entry : getMetasMap(event).entrySet()) {
 					BundleMeta bundle = entry.getValue();
-					bundle.getItems().removeAll(items);
+					bundle.getItems().removeIf(item -> items.stream().anyMatch(item::isSimilar));
 					entry.getKey().setItemMeta(bundle);
 				}
 				break;
