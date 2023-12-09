@@ -68,7 +68,7 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 			case DELETE:
 				for (Entry<ItemType, BundleMeta> entry : getMetasMap(event).entrySet()) {
 					BundleMeta bundle = entry.getValue();
-					bundle.getItems().clear();
+					bundle.setItems(Lists.newArrayList());
 					entry.getKey().setItemMeta(bundle);
 				}
 				break;
@@ -76,7 +76,9 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 			case REMOVE_ALL:
 				for (Entry<ItemType, BundleMeta> entry : getMetasMap(event).entrySet()) {
 					BundleMeta bundle = entry.getValue();
-					bundle.getItems().removeIf(item -> items.stream().anyMatch(item::isSimilar));
+					List<ItemStack> list = Lists.newArrayList(bundle.getItems());
+					list.removeIf(item -> items.stream().anyMatch(item::isSimilar));
+					bundle.setItems(list);
 					entry.getKey().setItemMeta(bundle);
 				}
 				break;
