@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +18,6 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
-import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.ItemMetaExpression;
 
 @Name("Bundle Items")
@@ -43,18 +43,18 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 	@Nullable
 	@Override
 	public Class<?>[] acceptChange(ChangeMode mode) {
-		return CollectionUtils.array(ItemType[].class, ItemStack[].class);
+		return new Class<?>[] {ItemType[].class, ItemStack[].class};
 	}
 
 	@Override
 	public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
-		if (delta == null)
+		if (delta == null || delta.length <= 0)
 			return;
 		List<ItemStack> items = new ArrayList<ItemStack>();
-		if (delta instanceof ItemStack[]) {
+		if (delta[0] instanceof ItemStack) {
 			items.addAll(Lists.newArrayList((ItemStack[]) delta));
 		} else {
-			items.addAll(Arrays.stream((ItemType[]) delta).map(ItemType::getRandom).toList());
+			items.addAll(Arrays.stream((ItemType[]) delta).map(ItemType::getRandom).collect(Collectors.toList()));
 		}
 		switch (mode) {
 			case ADD:
