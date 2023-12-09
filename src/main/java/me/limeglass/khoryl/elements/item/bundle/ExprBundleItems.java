@@ -32,7 +32,7 @@ public class ExprBundleItems extends ItemMetaExpression<BundleMeta, ItemStack> {
 	@Override
 	@Nullable
 	protected ItemStack[] grab(BundleMeta bundle) {
-		return bundle.getItems().toArray(ItemStack[]::new);
+		return bundle.getItems().toArray(new ItemStack[0]);
 	}
 
 	@Override
