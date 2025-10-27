@@ -27,7 +27,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew shadow
     - name: Upload Nightly Build
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: success()
       with:
         name: khoryl-nightly
