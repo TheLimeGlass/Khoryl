@@ -49,7 +49,7 @@ dependencies {
 	}
 
 	// bStats
-	shadow (group: 'org.bstats', name: 'bstats-bukkit', version: '3.1.0')
+	shadow (group: 'org.bstats', name: 'bstats-bukkit', version: '3.2.0')
 
 }
 
