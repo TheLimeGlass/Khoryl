@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.reflect.TypeToken;
 

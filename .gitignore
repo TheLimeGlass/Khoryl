@@ -2,6 +2,7 @@
 *.class
 
 # Log file
+logs
 *.log
 
 # BlueJ files
@@ -18,10 +19,70 @@
 *.zip
 *.tar.gz
 *.rar
+*.project
+*.classpath
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-.settings/
-.gradle/
+/.gradle/
+/.settings/
+/build/
+/bin/
+
+.gradle
 build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+eclipse/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+# metadata (windows)
+Thumbs.db
+desktop.ini
+
+### Java ###
+.env
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# other
+/run/
+/runs/
+runs

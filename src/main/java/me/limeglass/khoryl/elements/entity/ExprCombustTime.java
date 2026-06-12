@@ -1,10 +1,11 @@
 package me.limeglass.khoryl.elements.entity;
 
+import ch.njol.skript.util.Timespan.TimePeriod;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityCombustByBlockEvent;
 import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
@@ -57,7 +58,7 @@ public class ExprCombustTime extends SimpleExpression<Timespan> {
 
 	@Override
 	protected @Nullable Timespan[] get(Event event) {
-		return CollectionUtils.array(new Timespan(((EntityCombustByBlockEvent)event).getDuration() * 1000));
+		return CollectionUtils.array(new Timespan((long) (((EntityCombustByBlockEvent)event).getDuration() * 1000)));
 	}
 
 	@Nullable
@@ -72,15 +73,15 @@ public class ExprCombustTime extends SimpleExpression<Timespan> {
 	public void change(Event e, @Nullable Object[] delta, ChangeMode mode) {
 		if (delta[0] == null)
 			return;
-		int seconds = (int) (((Timespan) delta[0]).getMilliSeconds() / 1000);
+		float seconds = ((Timespan) delta[0]).getAs(TimePeriod.SECOND);
 		EntityCombustEvent event = (EntityCombustEvent) e;
 		switch (mode) {
 			case ADD:
-				int add = event.getDuration();
+				float add = event.getDuration();
 				event.setDuration(add + seconds);
 				break;
 			case REMOVE:
-				int remove = event.getDuration();
+				float remove = event.getDuration();
 				event.setDuration(remove - seconds);
 				break;
 			case SET:

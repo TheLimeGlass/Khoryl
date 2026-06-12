@@ -5,7 +5,6 @@ import java.util.Map.Entry;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.AnaloguePowerable;
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
@@ -14,6 +13,7 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.util.coll.CollectionUtils;
 import me.limeglass.khoryl.lang.BlockDataPropertyExpression;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Analogue Powerable Power")
 @Description("Get the power state for analogue powerable blocks.")

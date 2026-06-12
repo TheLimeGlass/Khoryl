@@ -9,7 +9,7 @@ import ch.njol.skript.registrations.Classes;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @authors LimeGlass and w00tmast3r

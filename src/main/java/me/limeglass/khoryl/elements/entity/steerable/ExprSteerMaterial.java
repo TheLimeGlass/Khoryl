@@ -2,7 +2,7 @@ package me.limeglass.khoryl.elements.entity.steerable;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Steerable;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.bukkit.event.Event;
 import org.bukkit.inventory.MerchantRecipe;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;

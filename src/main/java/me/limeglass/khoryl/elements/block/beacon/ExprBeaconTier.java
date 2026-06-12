@@ -1,7 +1,7 @@
 package me.limeglass.khoryl.elements.block.beacon;
 
 import org.bukkit.block.Beacon;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;

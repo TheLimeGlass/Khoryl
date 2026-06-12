@@ -1,7 +1,7 @@
 package me.limeglass.khoryl.elements.block.candles;
 
 import org.bukkit.block.data.type.Candle;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;

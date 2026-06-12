@@ -5,14 +5,16 @@ import java.io.StreamCorruptedException;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import ch.njol.skript.classes.registry.RegistryClassInfo;
 import org.bukkit.DyeColor;
+import org.bukkit.Registry;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.block.data.type.BigDripleaf.Tilt;
 import org.bukkit.block.data.type.PointedDripstone.Thickness;
 import org.bukkit.block.data.type.SculkSensor.Phase;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Frog.Variant;
+import org.bukkit.entity.Frog;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.Villager;
@@ -21,7 +23,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.LlamaInventory;
 import org.bukkit.inventory.MerchantRecipe;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Streams;
 
@@ -40,11 +42,15 @@ import me.limeglass.khoryl.lang.EnumClassInfo;
 public class Types {
 
 	static {
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 8)))
-			EnumClassInfo.create(PatternType.class, "bannerpatterntype").register();
-		EnumClassInfo.create(Villager.Profession.class, "villagerprofession").register();
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
-			EnumClassInfo.create(Villager.Type.class, "villagertype").register();
+		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 21))) {
+			if (Classes.getExactClassInfo(Villager.Type.class) == null)
+				Classes.registerClass(new RegistryClassInfo<>(Villager.Type.class, Registry.VILLAGER_TYPE, "villagertype", "villagertype")
+						.user("villager ?types?"));
+
+			if (Classes.getExactClassInfo(Frog.Variant.class) == null)
+				Classes.registerClass(new RegistryClassInfo<>(Frog.Variant.class, Registry.FROG_VARIANT, "frogvariant", "frogvariant")
+						.user("frog ?variants?"));
+		}
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 13)))
 			EnumClassInfo.create(TropicalFish.Pattern.class, "tropicalfishpattern").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 17)))
@@ -58,8 +64,6 @@ public class Types {
 			EnumClassInfo.create(ArmorStand.LockType.class, "locktype").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 15)))
 			EnumClassInfo.create(EquipmentSlot.class, "equipmentslot").register();
-		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
-			EnumClassInfo.create(Variant.class, "frogvariant").register();
 		if (!Skript.getMinecraftVersion().isSmallerThan(new Version(1, 19)))
 			EnumClassInfo.create(Phase.class, "sculksensorphase").register();
 

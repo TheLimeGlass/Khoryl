@@ -1,7 +1,7 @@
 package me.limeglass.khoryl.elements.block.repeater;
 
 import org.bukkit.block.data.type.Repeater;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;

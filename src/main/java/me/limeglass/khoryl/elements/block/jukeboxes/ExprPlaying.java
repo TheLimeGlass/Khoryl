@@ -3,7 +3,7 @@ package me.limeglass.khoryl.elements.block.jukeboxes;
 import org.bukkit.Material;
 import org.bukkit.block.Jukebox;
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer.ChangeMode;

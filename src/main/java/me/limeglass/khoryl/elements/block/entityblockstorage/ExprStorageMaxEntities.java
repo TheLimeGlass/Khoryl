@@ -2,7 +2,7 @@ package me.limeglass.khoryl.elements.block.entityblockstorage;
 
 import org.bukkit.block.EntityBlockStorage;
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
