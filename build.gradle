@@ -43,7 +43,7 @@ dependencies {
 	paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
 
 	//Skript
-	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.15.4') {
+	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.16.2') {
 		transitive = false
 	}
 
